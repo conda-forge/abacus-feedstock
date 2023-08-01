@@ -1,5 +1,5 @@
 {% set name = "abacus" %}
-{% set version = "3.2.4" %}
+{% set version = "3.3.1" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/deepmodeling/abacus-develop/archive/v{{ version }}.tar.gz
-  sha256: 65a84a4a02a085c42f86d54b487bf3f1501a45f940370a8a7527c881145f78d6
+  sha256: 29e1a78e1e370e45c5730df4a4b5ae52de74d0cf86771ca9f62dde34643f0f2d
 
 build:
   script: |
@@ -58,10 +58,8 @@ about:
     - libnpy.LICENSE
   summary: An electronic structure package based on plane wave and numerical atomic basis sets.
   description: >
-    ABACUS (Atomic-orbital Based Ab-initio Computation at UStc) is an open-source package based on density functional theory (DFT).
-    The package utilizes both plane wave and numerical atomic basis sets with the usage of norm-conserving pseudopotentials
-    to describe the interactions between nuclear ions and valence electrons. ABACUS supports LDA, GGA, meta-GGA, and hybrid functionals.
-    Apart from single-point calculations, the package allows geometry optimizations and ab-initio molecular dynamics with various ensembles.
+    ABACUS (Atomic-orbital Based Ab-initio Computation at UStc) is an open-source package based on density functional theory (DFT). The package utilizes both plane wave and numerical atomic basis sets with the usage of norm-conserving pseudopotentials to describe the interactions between nuclear ions and valence electrons.
+    ABACUS supports LDA, GGA, meta-GGA, and hybrid functionals. Apart from single-point calculations, the package allows geometry optimizations and ab-initio molecular dynamics with various ensembles.
 
 extra:
   recipe-maintainers:
