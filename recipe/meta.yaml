@@ -46,7 +46,7 @@ requirements:
     - scalapack
     - libopenblas
     - openblas
-    - {{ pin_subpackage('pytorch', max_pin='x.x') }} {{ proc_type }}*
+    - {{ pin_compatible('pytorch', max_pin='x.x') }} {{ proc_type }}*
 
 test:
   commands:
