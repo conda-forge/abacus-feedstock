@@ -36,7 +36,7 @@ requirements:
     - elpa * mpi_{{ mpi }}_*
     - fftw * mpi_{{ mpi }}_*
     - cereal
-    - pytorch
+    - pytorch * cpu_*
     - libxc-c
 
   run:
