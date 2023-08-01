@@ -14,6 +14,8 @@ cxx_compiler_version:
 - '12'
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
+fftw:
+- '3'
 mpi:
 - mpich
 mpich:
@@ -22,6 +24,8 @@ openblas:
 - 0.3.*
 openmpi:
 - '4'
+pytorch:
+- '2.0'
 target_platform:
 - linux-64
 zip_keys:
