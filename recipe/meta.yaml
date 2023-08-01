@@ -35,10 +35,14 @@ requirements:
   host:
     - {{ mpi }}
     - openblas
+    - elpa
     - elpa * mpi_{{ mpi }}_*
+    - fftw
     - fftw * mpi_{{ mpi }}_*
     - cereal
+    - pytorch
     - pytorch * cpu_*
+    - libxc-c
     - libxc-c * {{ proc_type }}_*
 
   run:
