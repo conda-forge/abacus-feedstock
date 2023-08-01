@@ -12,7 +12,7 @@ source:
 build:
   script: |
     export CMAKE_PREFIX_PATH=`python -c "import torch;print(torch.__path__[0])"`/share/cmake:$CMAKE_PREFIX_PATH
-    if [[ ${cuda_compiler_version} != "None" ]] then
+    if [[ ${cuda_compiler_version} != "None" ]]; then
       export CMAKE_ARGS="-DUSE_CUDA=1 ${CMAKE_ARGS}"
     fi
     cmake -B conda_build ${CMAKE_ARGS} -DCMAKE_BUILD_TYPE=Release -DENABLE_DEEPKS=1 -DENABLE_LIBXC=1
