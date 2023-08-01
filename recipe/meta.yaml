@@ -1,6 +1,6 @@
 {% set name = "abacus" %}
 {% set version = "3.2.4" %}
-{% set proc_type = "cuda_" if cuda_compiler_version != "None" else "cpu_" %}
+{% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 package:
   name: {{ name }}
@@ -39,7 +39,7 @@ requirements:
     - fftw * mpi_{{ mpi }}_*
     - cereal
     - pytorch * cpu_*
-    - libxc-c * {{ proc_type }}*
+    - libxc-c * {{ proc_type }}_*
 
   run:
     - {{ mpi }}
