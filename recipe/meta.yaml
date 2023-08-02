@@ -9,6 +9,8 @@ package:
 source:
   url: https://github.com/deepmodeling/abacus-develop/archive/v{{ version }}.tar.gz
   sha256: 29e1a78e1e370e45c5730df4a4b5ae52de74d0cf86771ca9f62dde34643f0f2d
+  patches:
+    - fix_cuda.patch
 
 build:
   script: |
@@ -41,7 +43,7 @@ requirements:
     - fftw * mpi_{{ mpi }}_*
     - cereal
     - pytorch
-    - pytorch * cpu_*
+    - pytorch * {{ proc_type }}_*
     - libxc-c
     - libxc-c * {{ proc_type }}_*
 

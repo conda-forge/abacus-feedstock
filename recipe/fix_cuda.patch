@@ -1,0 +1,21 @@
+From d8282b70ce1ba32457e864077a5db4a0a2cd1109 Mon Sep 17 00:00:00 2001
+From: Jinzhe Zeng <jinzhe.zeng@rutgers.edu>
+Date: Wed, 2 Aug 2023 15:33:00 -0400
+Subject: [PATCH] fix CUDA_ARCHITECTURES
+
+---
+ source/CMakeLists.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/source/CMakeLists.txt b/source/CMakeLists.txt
+index 5021e8421..da5e6f042 100644
+--- a/source/CMakeLists.txt
++++ b/source/CMakeLists.txt
+@@ -90,6 +90,7 @@ if(USE_CUDA)
+   )
+   set_property(
+     TARGET device
++    APPEND
+     PROPERTY CUDA_ARCHITECTURES
+     60 # P100
+     70 # V100
