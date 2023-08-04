@@ -43,7 +43,7 @@ requirements:
     - fftw * mpi_{{ mpi }}_*
     - cereal
     - pytorch
-    - pytorch * {{ proc_type }}_*
+    - pytorch * {{ proc_type }}*
     - libxc-c
     - libxc-c * {{ proc_type }}_*
 
