@@ -59,7 +59,7 @@ test:
     - mpirun -n 2 abacus --version  # [mpi == "mpich"]
 
 about:
-  home: http://abacus.ustc.edu.cn/
+  home: https://abacus.ustc.edu.cn/
   doc_url: https://abacus.deepmodeling.com/
   dev_url: https://github.com/deepmodeling/abacus-develop
   license: LGPL-3.0-only AND MIT
