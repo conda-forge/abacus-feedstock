@@ -21,6 +21,8 @@ build:
     cmake --install conda_build
   number: 0
   skip: true  # [not linux]
+  # upstream is not ready
+  skip: true  # [aarch64 and cuda_compiler_version != "None"]
   string: {{ proc_type }}_mpi_{{ mpi }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
 
 requirements:
