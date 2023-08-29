@@ -24,12 +24,12 @@ jobs:
         CONFIG: linux_64_cuda_compiler_versionNonecxx_compiler_version12mpiopenmpi
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_aarch64_mpimpich:
-        CONFIG: linux_aarch64_mpimpich
+      linux_aarch64_cuda_compiler_versionNonecxx_compiler_version12mpimpich:
+        CONFIG: linux_aarch64_cuda_compiler_versionNonecxx_compiler_version12mpimpich
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_aarch64_mpiopenmpi:
-        CONFIG: linux_aarch64_mpiopenmpi
+      linux_aarch64_cuda_compiler_versionNonecxx_compiler_version12mpiopenmpi:
+        CONFIG: linux_aarch64_cuda_compiler_versionNonecxx_compiler_version12mpiopenmpi
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
   timeoutInMinutes: 360
