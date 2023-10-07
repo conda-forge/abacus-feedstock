@@ -1,5 +1,5 @@
 {% set name = "abacus" %}
-{% set version = "3.3.4" %}
+{% set version = "3.4.0" %}
 {% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/deepmodeling/abacus-develop/archive/v{{ version }}.tar.gz
-  sha256: ca4d2818dcd6077607221138befcf57751053ac4c8f594e6fe0ea1dc72e3b982
+  sha256: 01ea63f921596f574d7eb93762724dbd45b01416bec8e3f719834ed7d2e7ed57
 
 build:
   script: |
