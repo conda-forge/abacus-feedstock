@@ -7,8 +7,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/deepmodeling/abacus-develop/archive/v{{ version }}.tar.gz
-  sha256: 20f9a0e99320b1d4cf477ee55a17d1d88c2aa0b019c9a714d38a27a9cc700953
+  git_url: https://github.com/deepmodeling/abacus-develop.git
+  git_tag: v{{ version }}
 
 build:
   script: |
@@ -16,10 +16,10 @@ build:
     if [[ ${cuda_compiler_version} != "None" ]]; then
       export CMAKE_ARGS="-DUSE_CUDA=1 ${CMAKE_ARGS}"
     fi
-    cmake -B conda_build ${CMAKE_ARGS} -DCMAKE_BUILD_TYPE=Release -DENABLE_DEEPKS=1 -DENABLE_LIBXC=1
+    cmake -B conda_build ${CMAKE_ARGS} -DCMAKE_BUILD_TYPE=Release -DENABLE_DEEPKS=1 -DENABLE_LIBXC=1 -DENABLE_LIBRI=1
     cmake --build conda_build -j`nproc`
     cmake --install conda_build
-  number: 0
+  number: 1
   skip: true  # [not linux]
   # upstream is not ready
   skip: true  # [aarch64 and cuda_compiler_version != "None"]
