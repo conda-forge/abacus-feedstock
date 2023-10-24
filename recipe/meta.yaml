@@ -7,8 +7,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/deepmodeling/abacus-develop/archive/v{{ version }}.tar.gz
-  sha256: 20f9a0e99320b1d4cf477ee55a17d1d88c2aa0b019c9a714d38a27a9cc700953
+  git_url: https://github.com/deepmodeling/abacus-develop.git
+  git_tag: v{{ version }}
 
 build:
   script: |
