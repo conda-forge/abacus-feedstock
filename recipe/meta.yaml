@@ -37,6 +37,9 @@ requirements:
   host:
     - {{ mpi }}
     - openblas
+    - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
+    - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
+    - libcufft-dev     # [(cuda_compiler_version or "").startswith("12")]
     - elpa
     - elpa * mpi_{{ mpi }}_*
     - fftw
