@@ -42,7 +42,7 @@ requirements:
     - libcufft-dev     # [(cuda_compiler_version or "").startswith("12")]
     - cuda-driver-dev  # [(cuda_compiler_version or "").startswith("12")]
     - cuda-nvrtc-dev   # [(cuda_compiler_version or "").startswith("12")]
-    - nvtx             # [(cuda_compiler_version or "").startswith("12")]
+    - cuda-nvtx-dev    # [(cuda_compiler_version or "").startswith("12")]
     - elpa
     - elpa * mpi_{{ mpi }}_*
     - fftw
