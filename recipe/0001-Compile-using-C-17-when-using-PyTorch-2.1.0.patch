@@ -1,0 +1,38 @@
+From 227ca6b8f2628e47f3a381e04ffb8b1f5c4da16c Mon Sep 17 00:00:00 2001
+From: Jinzhe Zeng <jinzhe.zeng@rutgers.edu>
+Date: Sat, 18 Nov 2023 18:29:32 -0500
+Subject: [PATCH] Compile using C++17 when using PyTorch 2.1.0
+
+(cherry picked from commit 3d50e44dafa4af4b1357a2d71ffa29e282dca072)
+---
+ CMakeLists.txt | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 035c03e65..2e7940298 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -367,8 +367,12 @@ if (ENABLE_FLOAT_FFTW)
+ endif()
+ 
+ if(ENABLE_DEEPKS)
+-  set(CMAKE_CXX_STANDARD 14)
+   find_package(Torch REQUIRED)
++  if(NOT Torch_VERSION VERSION_LESS "2.1.0")
++    set(CMAKE_CXX_STANDARD 17)
++  elseif(NOT Torch_VERSION VERSION_LESS "1.5.0")
++    set(CMAKE_CXX_STANDARD 14)
++  endif()
+   include_directories(${TORCH_INCLUDE_DIRS})
+   target_link_libraries(${ABACUS_BIN_NAME} deepks)
+   list(APPEND math_libs ${TORCH_LIBRARIES})
+@@ -636,4 +640,4 @@ install(PROGRAMS ${ABACUS_BIN_PATH}
+ 
+ if(ENABLE_COVERAGE)
+   coverage_evaluate()
+-endif()
+\ No newline at end of file
++endif()
+-- 
+2.34.1
+

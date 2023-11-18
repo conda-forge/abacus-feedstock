@@ -9,6 +9,8 @@ package:
 source:
   git_url: https://github.com/deepmodeling/abacus-develop.git
   git_tag: v{{ version }}
+  patches:
+    - 0001-Compile-using-C-17-when-using-PyTorch-2.1.0.patch
 
 build:
   script: |
