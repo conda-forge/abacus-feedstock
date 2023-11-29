@@ -8,22 +8,22 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12mpimpich:
-        CONFIG: linux_64_cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12mpimpich
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12mpiopenmpi:
-        CONFIG: linux_64_cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12mpiopenmpi
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_cuda_compilernvcccuda_compiler_version11.2cxx_compiler_version10mpimpich:
-        CONFIG: linux_64_cuda_compilernvcccuda_compiler_version11.2cxx_compiler_version10mpimpich
+      linux_64_cuda_compiler_version11.2cxx_compiler_version10mpimpich:
+        CONFIG: linux_64_cuda_compiler_version11.2cxx_compiler_version10mpimpich
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:11.2
-      linux_64_cuda_compilernvcccuda_compiler_version11.2cxx_compiler_version10mpiopenmpi:
-        CONFIG: linux_64_cuda_compilernvcccuda_compiler_version11.2cxx_compiler_version10mpiopenmpi
+      linux_64_cuda_compiler_version11.2cxx_compiler_version10mpiopenmpi:
+        CONFIG: linux_64_cuda_compiler_version11.2cxx_compiler_version10mpiopenmpi
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:11.2
+      linux_64_cuda_compiler_versionNonecxx_compiler_version12mpimpich:
+        CONFIG: linux_64_cuda_compiler_versionNonecxx_compiler_version12mpimpich
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      linux_64_cuda_compiler_versionNonecxx_compiler_version12mpiopenmpi:
+        CONFIG: linux_64_cuda_compiler_versionNonecxx_compiler_version12mpiopenmpi
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
       linux_aarch64_cuda_compiler_versionNonecxx_compiler_version12mpimpich:
         CONFIG: linux_aarch64_cuda_compiler_versionNonecxx_compiler_version12mpimpich
         UPLOAD_PACKAGES: 'True'
@@ -45,6 +45,9 @@ jobs:
 
   - script: |
         export CI=azure
+        export flow_run_id=azure_$(Build.BuildNumber).$(System.JobAttempt)
+        export remote_url=$(Build.Repository.Uri)
+        export sha=$(Build.SourceVersion)
         export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
         export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
         if [[ "${BUILD_REASON:-}" == "PullRequest" ]]; then
