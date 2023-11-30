@@ -1,0 +1,22 @@
+From 8d7ba1514b75f908ee2df8182f86f9af2dbbe2a5 Mon Sep 17 00:00:00 2001
+From: Chun Cai <amoycaic@gmail.com>
+Date: Thu, 30 Nov 2023 09:22:36 +0800
+Subject: [PATCH] Fix: cuda buid target
+
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index b3452043de..f72ecfc87a 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -394,7 +394,7 @@ if(ENABLE_DEEPKS)
+   set(CMAKE_CXX_STANDARD 14)
+   # Torch uses outdated components to detech CUDA arch, causing failure on latest CUDA kits.
+   # See above for setting CMAKE_CUDA_ARCHITECTURES
+-  set(TORCH_CUDA_ARCH_LIST CMAKE_CUDA_ARCHITECTURES)
++  set(TORCH_CUDA_ARCH_LIST ${CMAKE_CUDA_ARCHITECTURES})
+   find_package(Torch REQUIRED)
+   include_directories(${TORCH_INCLUDE_DIRS})
+   target_link_libraries(${ABACUS_BIN_NAME} deepks)
