@@ -10,7 +10,8 @@ source:
   - url: https://github.com/deepmodeling/abacus-develop/archive/refs/tags/v{{ version }}.tar.gz
     sha256: 20f9a0e99320b1d4cf477ee55a17d1d88c2aa0b019c9a714d38a27a9cc700953
     patches:
-      - 0001-Compile-using-C-17-when-using-PyTorch-2.1.0.patch
+      - 0001-Fix-setting-the-highest-required-cpp-standard-versio.patch
+      - 0002-Compile-using-C-17-when-using-PyTorch-2.1.0.patch
   - url: https://github.com/abacusmodeling/LibRI/archive/553c91c0be1d60a86e7666f0502ef866c366c600.tar.gz
     sha256: 2dfe49d8fa52091a651b2d29b962d67934888831578a9b5aa1c55f96dca382e5
     folder: deps/LibRI

@@ -1,0 +1,72 @@
+From ca97f61256a6d06d902c35754747b06b51f729d8 Mon Sep 17 00:00:00 2001
+From: Chun Cai <amoycaic@gmail.com>
+Date: Thu, 30 Nov 2023 09:56:49 +0800
+Subject: [PATCH 1/2] Fix: setting the highest required cpp standard version
+
+(cherry picked from commit 3dda5c55eaaaf88673f6d6eb20a2261f3e044d72)
+---
+ CMakeLists.txt | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 035c03e65..693e03ada 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -111,6 +111,11 @@ endif()
+ 
+ set(CMAKE_CXX_STANDARD 11)
+ set(CMAKE_CXX_STANDARD_REQUIRED ON)
++macro(set_if_higher VARIABLE VALUE)
++	if(${VARIABLE} LESS ${VALUE})
++		set(${VARIABLE} ${VALUE} )
++	endif()
++endmacro()
+ if (CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 5)
+   message(WARNING "GCC4 is not fully supported.")
+ endif()
+@@ -227,7 +232,7 @@ endif()
+ 
+ if(USE_CUDA OR USE_CUSOLVER_LCAO)
+   cmake_minimum_required(VERSION 3.18) # required by `CUDA_ARCHITECTURES` below
+-  set(CMAKE_CXX_STANDARD 14)
++  set_if_higher(CMAKE_CXX_STANDARD 14)
+   set(CMAKE_CXX_EXTENSIONS ON)
+   set(CMAKE_CUDA_STANDARD ${CMAKE_CXX_STANDARD})
+   set(CMAKE_CUDA_STANDARD_REQUIRED ON)
+@@ -367,7 +372,7 @@ if (ENABLE_FLOAT_FFTW)
+ endif()
+ 
+ if(ENABLE_DEEPKS)
+-  set(CMAKE_CXX_STANDARD 14)
++  set_if_higher(CMAKE_CXX_STANDARD 14)
+   find_package(Torch REQUIRED)
+   include_directories(${TORCH_INCLUDE_DIRS})
+   target_link_libraries(${ABACUS_BIN_NAME} deepks)
+@@ -418,7 +423,7 @@ if(DEFINED LIBRI_DIR)
+   set(ENABLE_LIBRI ON)
+ endif()
+ if(ENABLE_LIBRI)
+-  set(CMAKE_CXX_STANDARD 14)
++  set_if_higher(CMAKE_CXX_STANDARD 14)
+   if(LIBRI_DIR)
+     include_directories(${LIBRI_DIR}/include)
+   elseif(GIT_SUBMODULE)
+@@ -528,7 +533,7 @@ if(INFO)
+ endif()
+ 
+ IF (BUILD_TESTING)
+-  set(CMAKE_CXX_STANDARD 14) # Required in orbital
++  set_if_higher(CMAKE_CXX_STANDARD 14) # Required in orbital
+   include(CTest)
+   enable_testing()
+   find_package(GTest HINTS /usr/local/lib/ ${GTEST_DIR})
+@@ -636,4 +641,4 @@ install(PROGRAMS ${ABACUS_BIN_PATH}
+ 
+ if(ENABLE_COVERAGE)
+   coverage_evaluate()
+-endif()
+\ No newline at end of file
++endif()
+-- 
+2.34.1
+
