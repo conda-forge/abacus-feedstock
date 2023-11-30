@@ -7,10 +7,19 @@ package:
   version: {{ version }}
 
 source:
-  git_url: https://github.com/deepmodeling/abacus-develop.git
-  git_tag: v{{ version }}
-  patches:
-    - 0001-Compile-using-C-17-when-using-PyTorch-2.1.0.patch
+  - url: https://github.com/deepmodeling/abacus-develop/archive/refs/tags/v{{ version }}.tar.gz
+    sha256: 20f9a0e99320b1d4cf477ee55a17d1d88c2aa0b019c9a714d38a27a9cc700953
+    patches:
+      - 0001-Compile-using-C-17-when-using-PyTorch-2.1.0.patch
+  - url: https://github.com/abacusmodeling/LibRI/archive/553c91c0be1d60a86e7666f0502ef866c366c600.tar.gz
+    sha256: 2dfe49d8fa52091a651b2d29b962d67934888831578a9b5aa1c55f96dca382e5
+    folder: deps/LibRI
+  - url: https://github.com/abacusmodeling/LibComm/archive/9a127aadbd2575ff2c9789d0dda3677759df2a48.tar.gz
+    sha256: 7ca02114e8a7d465f30c1de2da9750c84613acbda4302b9360c60d2aa2a3c805
+    folder: deps/LibComm
+  - url: https://github.com/wenfei-li/libpaw_interface/archive/9ba84653a6350ac296a1c516b39bae390a2f8210.tar.gz
+    sha256: befaf44a4a5948459ed91b9af66df3727921af30fa6d6c7a8b1bc304eac85c9a
+    folder: deps/libpaw_interface
 
 build:
   script: |
@@ -18,7 +27,7 @@ build:
     if [[ ${cuda_compiler_version} != "None" ]]; then
       export CMAKE_ARGS="-DUSE_CUDA=1 ${CMAKE_ARGS}"
     fi
-    cmake -B conda_build ${CMAKE_ARGS} -DCMAKE_BUILD_TYPE=Release -DENABLE_DEEPKS=1 -DENABLE_LIBXC=1 -DENABLE_LIBRI=1
+    cmake -B conda_build ${CMAKE_ARGS} -DCMAKE_BUILD_TYPE=Release -DENABLE_DEEPKS=1 -DENABLE_LIBXC=1 -DENABLE_LIBRI=1 -DGIT_SUBMODULE=0 -DLIBRI_DIR=$SRC_DIR/deps/LibRI -DLIBCOMM_DIR=$SRC_DIR/deps/LibComm
     cmake --build conda_build -j`nproc`
     cmake --install conda_build
   number: 2
