@@ -1,17 +1,18 @@
-From 3dda5c55eaaaf88673f6d6eb20a2261f3e044d72 Mon Sep 17 00:00:00 2001
+From ca97f61256a6d06d902c35754747b06b51f729d8 Mon Sep 17 00:00:00 2001
 From: Chun Cai <amoycaic@gmail.com>
 Date: Thu, 30 Nov 2023 09:56:49 +0800
 Subject: [PATCH] Fix: setting the highest required cpp standard version
 
+(cherry picked from commit 3dda5c55eaaaf88673f6d6eb20a2261f3e044d72)
 ---
- CMakeLists.txt | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+ CMakeLists.txt | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index b3452043de..5ef5fb290b 100644
+index 035c03e65..693e03ada 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -115,6 +115,11 @@ endif()
+@@ -111,6 +111,11 @@ endif()
  
  set(CMAKE_CXX_STANDARD 11)
  set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -23,7 +24,7 @@ index b3452043de..5ef5fb290b 100644
  if (CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 5)
    message(WARNING "GCC4 is not fully supported.")
  endif()
-@@ -229,7 +234,7 @@ endif()
+@@ -227,7 +232,7 @@ endif()
  
  if(USE_CUDA OR USE_CUSOLVER_LCAO)
    cmake_minimum_required(VERSION 3.18) # required by `CUDA_ARCHITECTURES` below
@@ -32,16 +33,16 @@ index b3452043de..5ef5fb290b 100644
    set(CMAKE_CXX_EXTENSIONS ON)
    set(CMAKE_CUDA_STANDARD ${CMAKE_CXX_STANDARD})
    set(CMAKE_CUDA_STANDARD_REQUIRED ON)
-@@ -391,7 +396,7 @@ if (ENABLE_FLOAT_FFTW)
+@@ -367,7 +372,7 @@ if (ENABLE_FLOAT_FFTW)
  endif()
  
  if(ENABLE_DEEPKS)
 -  set(CMAKE_CXX_STANDARD 14)
 +  set_if_higher(CMAKE_CXX_STANDARD 14)
-   # Torch uses outdated components to detech CUDA arch, causing failure on latest CUDA kits.
-   # See above for setting CMAKE_CUDA_ARCHITECTURES
-   set(TORCH_CUDA_ARCH_LIST CMAKE_CUDA_ARCHITECTURES)
-@@ -445,7 +450,7 @@ if(DEFINED LIBRI_DIR)
+   find_package(Torch REQUIRED)
+   include_directories(${TORCH_INCLUDE_DIRS})
+   target_link_libraries(${ABACUS_BIN_NAME} deepks)
+@@ -418,7 +423,7 @@ if(DEFINED LIBRI_DIR)
    set(ENABLE_LIBRI ON)
  endif()
  if(ENABLE_LIBRI)
@@ -50,7 +51,7 @@ index b3452043de..5ef5fb290b 100644
    if(LIBRI_DIR)
      include_directories(${LIBRI_DIR}/include)
    elseif(GIT_SUBMODULE)
-@@ -555,7 +560,7 @@ if(INFO)
+@@ -528,7 +533,7 @@ if(INFO)
  endif()
  
  IF (BUILD_TESTING)
@@ -59,3 +60,13 @@ index b3452043de..5ef5fb290b 100644
    include(CTest)
    enable_testing()
    find_package(GTest HINTS /usr/local/lib/ ${GTEST_DIR})
+@@ -636,4 +641,4 @@ install(PROGRAMS ${ABACUS_BIN_PATH}
+ 
+ if(ENABLE_COVERAGE)
+   coverage_evaluate()
+-endif()
+\ No newline at end of file
++endif()
+-- 
+2.34.1
+
