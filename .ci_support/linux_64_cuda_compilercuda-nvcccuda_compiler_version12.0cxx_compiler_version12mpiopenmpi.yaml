@@ -16,12 +16,12 @@ docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 fftw:
 - '3'
+liblapack:
+- 3.9 *netlib
 mpi:
 - openmpi
 mpich:
 - '4'
-openblas:
-- 0.3.*
 openmpi:
 - '4'
 pytorch:
