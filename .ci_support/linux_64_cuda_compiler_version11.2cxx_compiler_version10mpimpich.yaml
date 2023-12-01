@@ -25,7 +25,7 @@ mpich:
 openmpi:
 - '4'
 pytorch:
-- '2.0'
+- '2.1'
 target_platform:
 - linux-64
 zip_keys:
