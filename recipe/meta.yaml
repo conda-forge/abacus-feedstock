@@ -80,7 +80,7 @@ requirements:
     - pytorch
     - pytorch * {{ proc_type }}*
     # prevent linking mkl
-    - pytorch * cpu_generic_*  # [cuda_compiler_version == "None"]
+    - nomkl
     - libxc-c
     - libxc-c * {{ proc_type }}_*
 
