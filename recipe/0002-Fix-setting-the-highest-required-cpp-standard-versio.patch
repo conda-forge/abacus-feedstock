@@ -1,0 +1,65 @@
+From bd10d1d3df647fc8b89cb00bd3afe75fa8bb9386 Mon Sep 17 00:00:00 2001
+From: Chun Cai <amoycaic@gmail.com>
+Date: Thu, 30 Nov 2023 09:56:49 +0800
+Subject: [PATCH 2/3] Fix: setting the highest required cpp standard version
+
+(cherry picked from commit 3dda5c55eaaaf88673f6d6eb20a2261f3e044d72)
+---
+ CMakeLists.txt | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 29976651f..a622cab83 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -111,6 +111,11 @@ endif()
+ 
+ set(CMAKE_CXX_STANDARD 11)
+ set(CMAKE_CXX_STANDARD_REQUIRED ON)
++macro(set_if_higher VARIABLE VALUE)
++	if(${VARIABLE} LESS ${VALUE})
++		set(${VARIABLE} ${VALUE} )
++	endif()
++endmacro()
+ if (CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 5)
+   message(WARNING "GCC4 is not fully supported.")
+ endif()
+@@ -227,7 +232,7 @@ endif()
+ 
+ if(USE_CUDA OR USE_CUSOLVER_LCAO)
+   cmake_minimum_required(VERSION 3.18) # required by `CUDA_ARCHITECTURES` below
+-  set(CMAKE_CXX_STANDARD 14)
++  set_if_higher(CMAKE_CXX_STANDARD 14)
+   set(CMAKE_CXX_EXTENSIONS ON)
+   set(CMAKE_CUDA_STANDARD ${CMAKE_CXX_STANDARD})
+   set(CMAKE_CUDA_STANDARD_REQUIRED ON)
+@@ -389,7 +394,7 @@ if (ENABLE_FLOAT_FFTW)
+ endif()
+ 
+ if(ENABLE_DEEPKS)
+-  set(CMAKE_CXX_STANDARD 14)
++  set_if_higher(CMAKE_CXX_STANDARD 14)
+   # Torch uses outdated components to detech CUDA arch, causing failure on latest CUDA kits.
+   # See above for setting CMAKE_CUDA_ARCHITECTURES
+   set(TORCH_CUDA_ARCH_LIST $ENV{TORCH_CUDA_ARCH_LIST})
+@@ -443,7 +448,7 @@ if(DEFINED LIBRI_DIR)
+   set(ENABLE_LIBRI ON)
+ endif()
+ if(ENABLE_LIBRI)
+-  set(CMAKE_CXX_STANDARD 14)
++  set_if_higher(CMAKE_CXX_STANDARD 14)
+   if(LIBRI_DIR)
+     include_directories(${LIBRI_DIR}/include)
+   elseif(GIT_SUBMODULE)
+@@ -553,7 +558,7 @@ if(INFO)
+ endif()
+ 
+ IF (BUILD_TESTING)
+-  set(CMAKE_CXX_STANDARD 14) # Required in orbital
++  set_if_higher(CMAKE_CXX_STANDARD 14) # Required in orbital
+   include(CTest)
+   enable_testing()
+   find_package(GTest HINTS /usr/local/lib/ ${GTEST_DIR})
+-- 
+2.34.1
+
