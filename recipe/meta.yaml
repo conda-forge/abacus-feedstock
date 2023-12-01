@@ -10,7 +10,9 @@ source:
   - url: https://github.com/deepmodeling/abacus-develop/archive/refs/tags/v{{ version }}.tar.gz
     sha256: 21f31cc7d3c75036cfb5831b9d5839f5617bc02fe0f420f93acbf71b47df3ad6
     patches:
-      - 3276.patch
+      - 0001-Fix-cuda-buid-target.patch
+      - 0002-Fix-setting-the-highest-required-cpp-standard-versio.patch
+      - 0003-Compile-using-C-17-when-using-PyTorch-2.1.0.patch
   - url: https://github.com/abacusmodeling/LibRI/archive/553c91c0be1d60a86e7666f0502ef866c366c600.tar.gz
     sha256: 2dfe49d8fa52091a651b2d29b962d67934888831578a9b5aa1c55f96dca382e5
     folder: deps/LibRI
