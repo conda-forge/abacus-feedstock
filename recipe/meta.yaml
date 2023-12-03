@@ -13,6 +13,7 @@ source:
       - 0001-Fix-cuda-buid-target.patch
       - 0002-Fix-setting-the-highest-required-cpp-standard-versio.patch
       - 0003-Compile-using-C-17-when-using-PyTorch-2.1.0.patch
+      - 0004-remove-FindLAPACK.cmake.patch
   - url: https://github.com/abacusmodeling/LibRI/archive/553c91c0be1d60a86e7666f0502ef866c366c600.tar.gz
     sha256: 2dfe49d8fa52091a651b2d29b962d67934888831578a9b5aa1c55f96dca382e5
     folder: deps/LibRI
@@ -40,10 +41,10 @@ build:
         exit 1
     fi
     export CUDAARCHS=all
-    cmake -B conda_build ${CMAKE_ARGS} -DCMAKE_BUILD_TYPE=Release -DENABLE_DEEPKS=1 -DENABLE_LIBXC=1 -DENABLE_LIBRI=1 -DGIT_SUBMODULE=0 -DLIBRI_DIR=$SRC_DIR/deps/LibRI -DLIBCOMM_DIR=$SRC_DIR/deps/LibComm
+    cmake -B conda_build ${CMAKE_ARGS} -DCMAKE_BUILD_TYPE=Release -DENABLE_DEEPKS=1 -DENABLE_LIBXC=1 -DENABLE_LIBRI=1 -DGIT_SUBMODULE=0 -DLIBRI_DIR=$SRC_DIR/deps/LibRI -DLIBCOMM_DIR=$SRC_DIR/deps/LibComm -DBLA_VENDOR=Generic
     cmake --build conda_build -j`nproc`
     cmake --install conda_build
-  number: 2
+  number: 3
   skip: true  # [not linux]
   # upstream is not ready
   skip: true  # [aarch64 and cuda_compiler_version != "None"]
@@ -60,7 +61,9 @@ requirements:
 
   host:
     - {{ mpi }}
-    - openblas
+    - libblas
+    - liblapack
+    - scalapack
     - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
     - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
     - libcufft-dev     # [(cuda_compiler_version or "").startswith("12")]
@@ -82,8 +85,6 @@ requirements:
   run:
     - {{ mpi }}
     - scalapack
-    - libopenblas
-    - openblas
     - {{ pin_compatible('pytorch', max_pin='x.x') }} {{ proc_type }}*
 
 test:
