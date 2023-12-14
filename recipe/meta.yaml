@@ -84,6 +84,7 @@ requirements:
 
   run:
     - {{ mpi }}
+    - libxc-c * cpu_*
     - scalapack
     - {{ pin_compatible('pytorch', max_pin='x.x') }} {{ proc_type }}*
 
