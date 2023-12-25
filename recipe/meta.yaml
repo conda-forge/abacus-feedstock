@@ -11,8 +11,8 @@ source:
     sha256: 0bc43af9bdb5b6a7bc30a72d680bb5054932ecedeb6fd3f4cdd3c4be0651c251
     patches:
       - 0001-Fix-cuda-buid-target.patch
-      - 0002-Fix-setting-the-highest-required-cpp-standard-versio.patch
-      - 0003-Compile-using-C-17-when-using-PyTorch-2.1.0.patch
+      # - 0002-Fix-setting-the-highest-required-cpp-standard-versio.patch
+      # - 0003-Compile-using-C-17-when-using-PyTorch-2.1.0.patch
       - 0004-remove-FindLAPACK.cmake.patch
   - url: https://github.com/abacusmodeling/LibRI/archive/553c91c0be1d60a86e7666f0502ef866c366c600.tar.gz
     sha256: 2dfe49d8fa52091a651b2d29b962d67934888831578a9b5aa1c55f96dca382e5
