@@ -55,7 +55,7 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
     - make
-    - cmake
+    - cmake <3.28
     - llvm-openmp  # [osx]
     - libgomp      # [linux]
 
