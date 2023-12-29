@@ -8,7 +8,7 @@ package:
 
 source:
   - url: https://github.com/deepmodeling/abacus-develop/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: 0bc43af9bdb5b6a7bc30a72d680bb5054932ecedeb6fd3f4cdd3c4be0651c251
+    sha256: 55c704f7767456a25383683f87e07d8118c62d819556f3ee81ad0e648def9f55
     patches:
       - 0001-Fix-cuda-buid-target.patch
       - 0004-remove-FindLAPACK.cmake.patch
