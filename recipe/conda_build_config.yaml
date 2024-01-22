@@ -1,3 +1,5 @@
 mpi:
   - mpich
   - openmpi
+libtorch:
+  - '2.1'

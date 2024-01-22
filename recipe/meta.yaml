@@ -24,7 +24,6 @@ source:
 
 build:
   script: |
-    export CMAKE_PREFIX_PATH=`python -c "import torch;print(torch.__path__[0])"`/share/cmake:$CMAKE_PREFIX_PATH
     if [[ ${cuda_compiler_version} != "None" ]]; then
       export CMAKE_ARGS="-DUSE_CUDA=1 ${CMAKE_ARGS}"
     fi
@@ -42,7 +41,7 @@ build:
     cmake -B conda_build ${CMAKE_ARGS} -DCMAKE_BUILD_TYPE=Release -DENABLE_DEEPKS=1 -DENABLE_LIBXC=1 -DENABLE_LIBRI=1 -DGIT_SUBMODULE=0 -DLIBRI_DIR=$SRC_DIR/deps/LibRI -DLIBCOMM_DIR=$SRC_DIR/deps/LibComm -DBLA_VENDOR=Generic
     cmake --build conda_build -j`nproc`
     cmake --install conda_build
-  number: 0
+  number: 1
   skip: true  # [not linux]
   # upstream is not ready
   skip: true  # [aarch64 and cuda_compiler_version != "None"]
@@ -76,8 +75,8 @@ requirements:
     - fftw
     - fftw * mpi_{{ mpi }}_*
     - cereal
-    - pytorch
-    - pytorch * {{ proc_type }}*
+    - libtorch
+    - libtorch * {{ proc_type }}*
     - libxc-c
     - libxc-c * cpu_*
 
@@ -85,7 +84,7 @@ requirements:
     - {{ mpi }}
     - libxc-c * cpu_*
     - scalapack
-    - {{ pin_compatible('pytorch', max_pin='x.x') }} {{ proc_type }}*
+    - {{ pin_compatible('libtorch', max_pin='x.x') }} {{ proc_type }}*
 
 test:
   commands:
