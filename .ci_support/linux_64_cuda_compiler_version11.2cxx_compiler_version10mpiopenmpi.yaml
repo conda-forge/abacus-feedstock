@@ -5,29 +5,29 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cuda_compiler:
-- cuda-nvcc
+- nvcc
 cuda_compiler_version:
-- '12.0'
+- '11.2'
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '12'
+- '10'
 docker_image:
-- quay.io/condaforge/linux-anvil-cos7-x86_64
+- quay.io/condaforge/linux-anvil-cuda:11.2
 fftw:
 - '3'
 libblas:
 - 3.9 *netlib
 liblapack:
 - 3.9 *netlib
+libtorch:
+- '2.1'
 mpi:
-- mpich
+- openmpi
 mpich:
 - '4'
 openmpi:
 - '4'
-pytorch:
-- '2.1'
 target_platform:
 - linux-64
 zip_keys:

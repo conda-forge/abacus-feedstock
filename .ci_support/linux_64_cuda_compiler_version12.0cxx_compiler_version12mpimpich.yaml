@@ -20,14 +20,14 @@ libblas:
 - 3.9 *netlib
 liblapack:
 - 3.9 *netlib
+libtorch:
+- '2.1'
 mpi:
-- openmpi
+- mpich
 mpich:
 - '4'
 openmpi:
 - '4'
-pytorch:
-- '2.1'
 target_platform:
 - linux-64
 zip_keys:
