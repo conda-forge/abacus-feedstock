@@ -1,0 +1,47 @@
+From a7eda91652387b1fb572cdbdae05abba72b20f5a Mon Sep 17 00:00:00 2001
+From: Jinzhe Zeng <jinzhe.zeng@rutgers.edu>
+Date: Wed, 31 Jan 2024 15:43:57 -0500
+Subject: [PATCH] Removes FindLAPACK.cmake which finds BLAS
+
+---
+ cmake/FindLAPACK.cmake | 31 -------------------------------
+ 1 file changed, 31 deletions(-)
+ delete mode 100644 cmake/FindLAPACK.cmake
+
+diff --git a/cmake/FindLAPACK.cmake b/cmake/FindLAPACK.cmake
+deleted file mode 100644
+index c240d5facf..0000000000
+--- a/cmake/FindLAPACK.cmake
++++ /dev/null
+@@ -1,31 +0,0 @@
+-# - Find LAPACK
+-# Find the native double precision ScaLAPACK headers and libraries.
+-#
+-#  LAPACK_LIBRARIES     - List of libraries when using ScaLAPACK.
+-#  LAPACK_FOUND         - True if ScaLAPACK is found.
+-#
+-
+-find_library(LAPACK_LIBRARY
+-    NAMES openblas blas
+-    HINTS ${LAPACK_DIR}
+-    PATH_SUFFIXES "lib"
+-)
+-
+-# Handle the QUIET and REQUIRED arguments and
+-# set ScaLAPACK_FOUND to TRUE if all variables are non-zero.
+-include(FindPackageHandleStandardArgs)
+-find_package_handle_standard_args(LAPACK DEFAULT_MSG LAPACK_LIBRARY)
+-
+-# Copy the results to the output variables and target.
+-if(LAPACK_FOUND)
+-    set(LAPACK_LIBRARIES ${LAPACK_LIBRARY})
+-
+-    if(NOT TARGET LAPACK::LAPACK)
+-        add_library(LAPACK::LAPACK UNKNOWN IMPORTED)
+-        set_target_properties(LAPACK::LAPACK PROPERTIES
+-            IMPORTED_LINK_INTERFACE_LANGUAGES "C"
+-            IMPORTED_LOCATION "${LAPACK_LIBRARY}")
+-    endif()
+-endif()
+-
+-mark_as_advanced(LAPACK_LIBRARY)
