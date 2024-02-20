@@ -1,5 +1,5 @@
 {% set name = "abacus" %}
-{% set version = "3.5.2" %}
+{% set version = "3.5.3" %}
 {% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   - url: https://github.com/deepmodeling/abacus-develop/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: b4823db244bc68cfa2cff0b4d33140051f56925b19c411f136ce27fb8e1ed3be
+    sha256: f56066473dbd562f170f40809738076c0862321499ae7fcbd71508581f9ba7bf
     patches:
       - 0001-rm-findlapack.patch
   - url: https://github.com/abacusmodeling/LibRI/archive/553c91c0be1d60a86e7666f0502ef866c366c600.tar.gz
