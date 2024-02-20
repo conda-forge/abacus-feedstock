@@ -9,3 +9,5 @@ github:
 provider:
   linux_aarch64: azure
 test_on_native_only: true
+azure:
+  free_disk_space: True
