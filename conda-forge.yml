@@ -8,6 +8,6 @@ github:
   tooling_branch_name: main
 provider:
   linux_aarch64: azure
-test_on_native_only: true
 azure:
-  free_disk_space: True
+  free_disk_space: true
+test: native_and_emulated
