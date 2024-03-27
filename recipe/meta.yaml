@@ -28,10 +28,13 @@ build:
     fi
     if [[ ${cuda_compiler_version} == 11.2 ]]; then
         export TORCH_CUDA_ARCH_LIST="3.5;5.0;6.0;6.1;7.0;7.5;8.0;8.6+PTX"
+        export CUDA_TOOLKIT_ROOT=${CUDA_HOME}
     elif [[ ${cuda_compiler_version} == 11.8 ]]; then
         export TORCH_CUDA_ARCH_LIST="3.5;5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9+PTX"
+        export CUDA_TOOLKIT_ROOT=${CUDA_HOME}
     elif [[ ${cuda_compiler_version} == 12.0 ]]; then
         export TORCH_CUDA_ARCH_LIST="5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9;9.0+PTX"
+        export CUDA_TOOLKIT_ROOT=${PREFIX}
     elif [[ ${cuda_compiler_version} != "None" ]]; then
         echo "unsupported cuda version."
         exit 1
@@ -40,10 +43,10 @@ build:
     cmake -B conda_build ${CMAKE_ARGS} -DCMAKE_BUILD_TYPE=Release -DENABLE_DEEPKS=1 -DENABLE_LIBXC=1 -DENABLE_LIBRI=1 -DGIT_SUBMODULE=0 -DLIBRI_DIR=$SRC_DIR/deps/LibRI -DLIBCOMM_DIR=$SRC_DIR/deps/LibComm -DBLA_VENDOR=Generic
     cmake --build conda_build -j`nproc`
     cmake --install conda_build
-  number: 0
+  number: 1
   skip: true  # [not linux]
   # upstream is not ready
-  skip: true  # [aarch64 and cuda_compiler_version != "None"]
+  skip: true  # [aarch64 and (cuda_compiler_version or "").startswith("11")]
   string: {{ proc_type }}_mpi_{{ mpi }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
 
 requirements:
@@ -88,8 +91,8 @@ requirements:
 test:
   commands:
     - export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes  # [mpi == "openmpi"]
-    - abacus --version
-    - mpirun -n 2 abacus --version  # [mpi == "mpich"]
+    - abacus --version  # [not (aarch64 and cuda_compiler_version != "None")]
+    - mpirun -n 2 abacus --version  # [mpi == "mpich" and not (aarch64 and cuda_compiler_version != "None")]
 
 about:
   home: https://abacus.ustc.edu.cn/
