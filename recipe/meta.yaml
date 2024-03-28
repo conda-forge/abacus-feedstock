@@ -9,8 +9,6 @@ package:
 source:
   - url: https://github.com/deepmodeling/abacus-develop/archive/refs/tags/v{{ version }}.tar.gz
     sha256: 9efdfe91922e37526745df2ea3fa455ff062d3ad10092459faaeb038197bc710
-    patches:
-      - 0001-rm-findlapack.patch
   - url: https://github.com/abacusmodeling/LibRI/archive/553c91c0be1d60a86e7666f0502ef866c366c600.tar.gz
     sha256: 2dfe49d8fa52091a651b2d29b962d67934888831578a9b5aa1c55f96dca382e5
     folder: deps/LibRI
