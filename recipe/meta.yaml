@@ -89,9 +89,9 @@ requirements:
 
 test:
   commands:
-    - export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes  # [mpi == "openmpi"]
+    - export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes OMPI_MCA_plm_ssh_agent=false  # [mpi == "openmpi"]
     - abacus --version  # [not (aarch64 and cuda_compiler_version != "None")]
-    - mpirun -n 2 abacus --version  # [mpi == "mpich" and not (aarch64 and cuda_compiler_version != "None")]
+    - mpirun -n 2 abacus --version  # [not (aarch64 and cuda_compiler_version != "None")]
 
 about:
   home: https://abacus.ustc.edu.cn/
