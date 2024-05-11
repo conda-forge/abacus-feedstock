@@ -34,87 +34,73 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_c_stdlib_version2.12cuda_compiler_versionNonecxx_compiler_version12mpimpich</td>
+              <td>linux_64_c_stdlib_version2.12cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12mpimpich</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19956&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_stdlib_version2.12cuda_compiler_versionNonecxx_compiler_version12mpimpich" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_stdlib_version2.12cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12mpimpich" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_stdlib_version2.12cuda_compiler_versionNonecxx_compiler_version12mpiopenmpi</td>
+              <td>linux_64_c_stdlib_version2.12cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12mpiopenmpi</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19956&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_stdlib_version2.12cuda_compiler_versionNonecxx_compiler_version12mpiopenmpi" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_stdlib_version2.12cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12mpiopenmpi" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_stdlib_version2.17cuda_compiler_version11.2cxx_compiler_version10mpimpich</td>
+              <td>linux_64_c_stdlib_version2.17cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12mpimpich</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19956&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_stdlib_version2.17cuda_compiler_version11.2cxx_compiler_version10mpimpich" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_stdlib_version2.17cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12mpimpich" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_stdlib_version2.17cuda_compiler_version11.2cxx_compiler_version10mpiopenmpi</td>
+              <td>linux_64_c_stdlib_version2.17cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12mpiopenmpi</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19956&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_stdlib_version2.17cuda_compiler_version11.2cxx_compiler_version10mpiopenmpi" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_stdlib_version2.17cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12mpiopenmpi" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_stdlib_version2.17cuda_compiler_version11.8cxx_compiler_version11mpimpich</td>
+              <td>linux_64_c_stdlib_version2.17cuda_compilernvcccuda_compiler_version11.8cxx_compiler_version11mpimpich</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19956&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_stdlib_version2.17cuda_compiler_version11.8cxx_compiler_version11mpimpich" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_stdlib_version2.17cuda_compilernvcccuda_compiler_version11.8cxx_compiler_version11mpimpich" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_stdlib_version2.17cuda_compiler_version11.8cxx_compiler_version11mpiopenmpi</td>
+              <td>linux_64_c_stdlib_version2.17cuda_compilernvcccuda_compiler_version11.8cxx_compiler_version11mpiopenmpi</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19956&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_stdlib_version2.17cuda_compiler_version11.8cxx_compiler_version11mpiopenmpi" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_stdlib_version2.17cuda_compilernvcccuda_compiler_version11.8cxx_compiler_version11mpiopenmpi" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_stdlib_version2.17cuda_compiler_version12.0cxx_compiler_version12mpimpich</td>
+              <td>linux_aarch64_cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12mpimpich</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19956&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_stdlib_version2.17cuda_compiler_version12.0cxx_compiler_version12mpimpich" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12mpimpich" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_stdlib_version2.17cuda_compiler_version12.0cxx_compiler_version12mpiopenmpi</td>
+              <td>linux_aarch64_cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12mpiopenmpi</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19956&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_stdlib_version2.17cuda_compiler_version12.0cxx_compiler_version12mpiopenmpi" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12mpiopenmpi" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64_cuda_compiler_version12.0cxx_compiler_version12mpimpich</td>
+              <td>linux_aarch64_cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12mpimpich</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19956&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_version12.0cxx_compiler_version12mpimpich" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12mpimpich" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64_cuda_compiler_version12.0cxx_compiler_version12mpiopenmpi</td>
+              <td>linux_aarch64_cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12mpiopenmpi</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19956&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_version12.0cxx_compiler_version12mpiopenmpi" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_versionNonecxx_compiler_version12mpimpich</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19956&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_versionNonecxx_compiler_version12mpimpich" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_versionNonecxx_compiler_version12mpiopenmpi</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19956&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_versionNonecxx_compiler_version12mpiopenmpi" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12mpiopenmpi" alt="variant">
                 </a>
               </td>
             </tr>
