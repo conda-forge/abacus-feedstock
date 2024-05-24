@@ -25,7 +25,7 @@ libblas:
 liblapack:
 - 3.9 *netlib
 libtorch:
-- '2.1'
+- '2.3'
 mpi:
 - mpich
 mpich:
