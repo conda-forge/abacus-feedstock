@@ -41,7 +41,7 @@ build:
     cmake -B conda_build ${CMAKE_ARGS} -DCMAKE_BUILD_TYPE=Release -DENABLE_DEEPKS=1 -DENABLE_LIBXC=1 -DENABLE_LIBRI=1 -DGIT_SUBMODULE=0 -DLIBRI_DIR=$SRC_DIR/deps/LibRI -DLIBCOMM_DIR=$SRC_DIR/deps/LibComm -DBLA_VENDOR=Generic
     cmake --build conda_build -j`nproc`
     cmake --install conda_build
-  number: 0
+  number: 1
   skip: true  # [not linux]
   # upstream is not ready
   skip: true  # [aarch64 and (cuda_compiler_version or "").startswith("11")]
@@ -89,9 +89,9 @@ requirements:
 
 test:
   commands:
-    - export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes  # [mpi == "openmpi"]
+    - export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes OMPI_MCA_plm_ssh_agent=false  # [mpi == "openmpi"]
     - abacus --version  # [not (aarch64 and cuda_compiler_version != "None")]
-    - mpirun -n 2 abacus --version  # [mpi == "mpich" and not (aarch64 and cuda_compiler_version != "None")]
+    - mpirun -n 2 abacus --version  # [not (aarch64 and cuda_compiler_version != "None")]
 
 about:
   home: https://abacus.ustc.edu.cn/
