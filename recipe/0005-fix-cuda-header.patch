@@ -1,0 +1,21 @@
+From 43f5ee10e9a2cf4d4864c8a297aaa72560713b5d Mon Sep 17 00:00:00 2001
+From: dzzz2001 <dzcpku2001@163.com>
+Date: Tue, 2 Jul 2024 18:25:59 +0800
+Subject: [PATCH] include device.h
+
+---
+ source/module_hamilt_lcao/module_gint/kernels/cuda/gint_force.cu | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/source/module_hamilt_lcao/module_gint/kernels/cuda/gint_force.cu b/source/module_hamilt_lcao/module_gint/kernels/cuda/gint_force.cu
+index e748196f00..4871d2cbc4 100644
+--- a/source/module_hamilt_lcao/module_gint/kernels/cuda/gint_force.cu
++++ b/source/module_hamilt_lcao/module_gint/kernels/cuda/gint_force.cu
+@@ -2,6 +2,7 @@
+ #include "interp.cuh"
+ #include "gint_force.cuh"
+ #include "cuda_tools.cuh"
++#include "module_base/module_device/device.h"
+ // CUDA kernel to calculate psi and force
+ namespace GintKernel
+ {
