@@ -19,7 +19,7 @@ cuda_compiler_version:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '12'
+- '13'
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 fftw:
@@ -29,9 +29,9 @@ libblas:
 liblapack:
 - 3.9 *netlib
 libtorch:
-- '2.3'
+- '2.4'
 mpi:
-- mpich
+- openmpi
 mpich:
 - '4'
 openmpi:
