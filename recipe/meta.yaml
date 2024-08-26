@@ -1,5 +1,5 @@
 {% set name = "abacus" %}
-{% set version = "3.7.3" %}
+{% set version = "3.7.4" %}
 {% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 package:
@@ -8,9 +8,9 @@ package:
 
 source:
   - url: https://github.com/deepmodeling/abacus-develop/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: 8f2397d0729869cf3da8bff61c40da3ba106dd590b95036837b140f4f4c14d3e
-  - url: https://github.com/abacusmodeling/LibRI/archive/553c91c0be1d60a86e7666f0502ef866c366c600.tar.gz
-    sha256: 2dfe49d8fa52091a651b2d29b962d67934888831578a9b5aa1c55f96dca382e5
+    sha256: 166a0c145cb47fbcede31714236b00e97fa4bd6d2cfe5ba562d94634d4b4c3f8
+  - url: https://github.com/abacusmodeling/LibRI/archive/refs/tags/v0.2.0.tar.gz
+    sha256: ad79dfbc3ed8ff066c85549a2737d29205dbf755b38ea216ab2ab42754f80389
     folder: deps/LibRI
   - url: https://github.com/abacusmodeling/LibComm/archive/refs/tags/v0.1.0.tar.gz
     sha256: 48899b9877bcddf3cc03e4e7323e38cfd802d756b7bafba58f151f81a3fa6ed4
@@ -41,7 +41,7 @@ build:
     cmake -B conda_build ${CMAKE_ARGS} -DCMAKE_BUILD_TYPE=Release -DENABLE_DEEPKS=1 -DENABLE_LIBXC=1 -DENABLE_LIBRI=1 -DGIT_SUBMODULE=0 -DLIBRI_DIR=$SRC_DIR/deps/LibRI -DLIBCOMM_DIR=$SRC_DIR/deps/LibComm -DBLA_VENDOR=Generic
     cmake --build conda_build -j`nproc`
     cmake --install conda_build
-  number: 1
+  number: 0
   skip: true  # [not linux]
   # upstream is not ready
   skip: true  # [aarch64 and (cuda_compiler_version or "").startswith("11")]
