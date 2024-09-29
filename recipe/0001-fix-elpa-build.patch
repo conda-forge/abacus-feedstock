@@ -1,0 +1,92 @@
+From b8b38299c90b5f22229c77c17031552275a415da Mon Sep 17 00:00:00 2001
+From: Goodchong <solomon.zhc@gmail.com>
+Date: Tue, 24 Sep 2024 19:53:23 +0800
+Subject: [PATCH] use ELPA_WITH_NVIDIA_GPU_VERSION to judge elpa setup gpu
+ (#5163)
+
+* use ELPA_WITH_NVIDIA_GPU_VERSION to judge elpa setup gpu
+
+* fix the doc
+
+* add some content in doc
+
+* replace header file
+
+* fix a elpa version 2011 bug
+
+* fix include to adopt early version elpa
+---
+ docs/advanced/acceleration/cuda.md          |  4 +++-
+ source/module_hsolver/diago_elpa_native.cpp | 10 ++++++++--
+ source/module_hsolver/genelpa/elpa_new.h    | 10 ++++++++++
+ 3 files changed, 21 insertions(+), 3 deletions(-)
+
+diff --git a/docs/advanced/acceleration/cuda.md b/docs/advanced/acceleration/cuda.md
+index 0200e98e78..98a85f11b0 100644
+--- a/docs/advanced/acceleration/cuda.md
++++ b/docs/advanced/acceleration/cuda.md
+@@ -29,7 +29,9 @@ To compile and use ABACUS in CUDA mode, you currently need to have an NVIDIA GPU
+
+ Check the [Advanced Installation Options](https://abacus-rtd.readthedocs.io/en/latest/advanced/install.html#build-with-cuda-support) for the installation of CUDA version support.
+
+-When the compilation parameter USE_ELPA is ON (which is the default value) and USE_CUDA is also set to ON, the ELPA library needs to [enable GPU support](https://github.com/marekandreas/elpa/blob/master/documentation/INSTALL.md) at compile time.
++Setting both USE_ELPA and USE_CUDA to ON does not automatically enable ELPA to run on GPUs. ELPA support for GPUs needs to be enabled when ELPA is compiled. [enable GPU support](https://github.com/marekandreas/elpa/blob/master/documentation/INSTALL.md).
++
++The ABACUS program will automatically determine whether the current ELPA supports GPU based on the elpa/elpa_configured_options.h header file. Users can also check this header file to determine the GPU support of ELPA in their environment. ELPA introduced a new API elpa_setup_gpu in version 2023.11.001. So if you want to enable ELPA GPU in ABACUS, the ELPA version must be greater than or equal to 2023.11.001.
+
+ ## Run with the GPU support by editing the INPUT script:
+
+diff --git a/source/module_hsolver/diago_elpa_native.cpp b/source/module_hsolver/diago_elpa_native.cpp
+index a532032274..f187a62288 100644
+--- a/source/module_hsolver/diago_elpa_native.cpp
++++ b/source/module_hsolver/diago_elpa_native.cpp
+@@ -95,11 +95,17 @@ void DiagoElpaNative<T>::diag_pool(hamilt::MatrixBlock<T>& h_mat,
+     elpa_setup(handle);
+     elpa_set(handle, "solver", ELPA_SOLVER_1STAGE, &success);
+
+-#ifdef __CUDA
++/*  ELPA_WITH_NVIDIA_GPU_VERSION is a symbol defined in elpa/elpa_configured_options.h
++    For example:
++    cat elpa/elpa_configured_options.h
++    #define ELPA_WITH_NVIDIA_GPU_VERSION 1
++    #define ELPA_WITH_AMD_GPU_VERSION 0
++    #define ELPA_WITH_SYCL_GPU_VERSION 0
++ */
++#if ELPA_WITH_NVIDIA_GPU_VERSION
+     if (PARAM.globalv.device_flag == "gpu")
+     {
+         elpa_set(handle, "nvidia-gpu", 1, &success);
+-
+         elpa_set(handle, "real_kernel", ELPA_2STAGE_REAL_NVIDIA_GPU, &success);
+         elpa_setup_gpu(handle);
+     }
+diff --git a/source/module_hsolver/genelpa/elpa_new.h b/source/module_hsolver/genelpa/elpa_new.h
+index b002ea0bb6..ff1648ed85 100644
+--- a/source/module_hsolver/genelpa/elpa_new.h
++++ b/source/module_hsolver/genelpa/elpa_new.h
+@@ -2,6 +2,8 @@
+
+ #include <elpa/elpa_version.h>
+
++
++
+ #if ELPA_API_VERSION >= 20221101
+ #include <elpa/elpa.h>
+ #else
+@@ -25,8 +27,16 @@ extern "C"
+ #include <elpa/elpa_generated.h>
+     // #include <elpa/elpa_generic.h>
+ #undef complex
++
+     const char *elpa_strerr(int elpa_error);
++
++// This is a header file related to GPU support.
++// This header file was not available in the early ELPA.
++#if ELPA_API_VERSION >= 20231101
++#include <elpa/elpa_configured_options.h>
++#endif
+ }
+
++
+ #include "elpa_generic.hpp" // This is a wrapper for `elpa/elpa_generic.h`.
+ #endif

@@ -9,6 +9,7 @@ package:
 source:
   - url: https://github.com/deepmodeling/abacus-develop/archive/refs/tags/v{{ version }}.tar.gz
     sha256: 599614a7100ec545c1a9617f0b250b2edced2a99f7c5de5ec410dcf0740b8657
+    patches: 0001-fix-elpa-build.patch
   - url: https://github.com/abacusmodeling/LibRI/archive/refs/tags/v0.2.0.tar.gz
     sha256: ad79dfbc3ed8ff066c85549a2737d29205dbf755b38ea216ab2ab42754f80389
     folder: deps/LibRI
