@@ -1,5 +1,5 @@
 {% set name = "abacus" %}
-{% set version = "3.7.4" %}
+{% set version = "3.8.0" %}
 {% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 package:
@@ -8,12 +8,12 @@ package:
 
 source:
   - url: https://github.com/deepmodeling/abacus-develop/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: 166a0c145cb47fbcede31714236b00e97fa4bd6d2cfe5ba562d94634d4b4c3f8
-  - url: https://github.com/abacusmodeling/LibRI/archive/refs/tags/v0.2.0.tar.gz
-    sha256: ad79dfbc3ed8ff066c85549a2737d29205dbf755b38ea216ab2ab42754f80389
+    sha256: c09ccdd2b51fe82ef7bbc92ab251f707f50d1abe805f21e17c805e60ab7dc26e
+  - url: https://github.com/abacusmodeling/LibRI/archive/refs/tags/v0.2.1.0.zip
+    sha256: 688378bb720dcaf11336af26729493b673e8c6f14a4c2128e000f6cc24d5ac44
     folder: deps/LibRI
-  - url: https://github.com/abacusmodeling/LibComm/archive/refs/tags/v0.1.0.tar.gz
-    sha256: 48899b9877bcddf3cc03e4e7323e38cfd802d756b7bafba58f151f81a3fa6ed4
+  - url: https://github.com/abacusmodeling/LibComm/archive/refs/tags/v0.1.1.zip
+    sha256: 10fb0e1f6f064c46d31fa2d2bc5d76c6239ff90c5b383cb3a5cb5f7834073a4d
     folder: deps/LibComm
   - url: https://github.com/wenfei-li/libpaw_interface/archive/9ba84653a6350ac296a1c516b39bae390a2f8210.tar.gz
     sha256: befaf44a4a5948459ed91b9af66df3727921af30fa6d6c7a8b1bc304eac85c9a
