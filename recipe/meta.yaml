@@ -80,6 +80,7 @@ requirements:
     - libtorch * {{ proc_type }}*
     - libxc-c
     - libxc-c * cpu_*
+    - libxc-c <7
 
   run:
     - {{ mpi }}
