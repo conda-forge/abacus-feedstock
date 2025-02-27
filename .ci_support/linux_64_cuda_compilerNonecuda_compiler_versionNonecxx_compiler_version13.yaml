@@ -21,9 +21,9 @@ docker_image:
 fftw:
 - '3'
 libblas:
-- 3.9 *netlib
+- 3.9.* *netlib
 liblapack:
-- 3.9 *netlib
+- 3.9.* *netlib
 libtorch:
 - '2.5'
 mpi:
