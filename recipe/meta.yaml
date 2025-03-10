@@ -8,7 +8,7 @@ package:
 
 source:
   - url: https://github.com/deepmodeling/abacus-develop/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: 92a1acdb375bd9a510698e4fdaf4a55c32a08c7d872d1c42f4b0000f65df19c1
+    sha256: fa9b95cb244cd7f450ffe1fb60c1e6ace43f9f85e67bdf09dbcd81dc00b2a367
   - url: https://github.com/abacusmodeling/LibRI/archive/refs/tags/v0.2.1.0.zip
     sha256: 688378bb720dcaf11336af26729493b673e8c6f14a4c2128e000f6cc24d5ac44
     folder: deps/LibRI
