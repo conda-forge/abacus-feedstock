@@ -1,6 +1,6 @@
 mpi:
   - mpich
-#  - openmpi # https://github.com/deepmodeling/abacus-develop/issues/5194
+  - openmpi
 
 # follow pytorch's pin
 c_stdlib_version:  # [unix]
