@@ -1,17 +1,15 @@
 c_stdlib:
 - sysroot
 c_stdlib_version:
-- '2.28'
-cdt_name:
-- conda
+- '2.17'
 channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
 cuda_compiler:
-- None
+- cuda-nvcc
 cuda_compiler_version:
-- None
+- '12.6'
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -25,7 +23,7 @@ libblas:
 liblapack:
 - 3.9.* *netlib
 libtorch:
-- '2.5'
+- '2.7'
 mpi:
 - openmpi
 mpich:
@@ -36,6 +34,5 @@ target_platform:
 - linux-aarch64
 zip_keys:
 - - cxx_compiler_version
-  - cuda_compiler
+  - c_stdlib_version
   - cuda_compiler_version
-  - docker_image
