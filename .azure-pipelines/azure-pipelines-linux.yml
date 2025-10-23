@@ -8,36 +8,36 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_cuda_compiler_version12.6cxx_compiler_version13mpimpich:
-        CONFIG: linux_64_cuda_compiler_version12.6cxx_compiler_version13mpimpich
+      linux_64_cuda_compiler_version12.9mpimpich:
+        CONFIG: linux_64_cuda_compiler_version12.9mpimpich
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_64_cuda_compiler_version12.6cxx_compiler_version13mpiopenmpi:
-        CONFIG: linux_64_cuda_compiler_version12.6cxx_compiler_version13mpiopenmpi
+      linux_64_cuda_compiler_version12.9mpiopenmpi:
+        CONFIG: linux_64_cuda_compiler_version12.9mpiopenmpi
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_64_cuda_compiler_versionNonecxx_compiler_version14mpimpich:
-        CONFIG: linux_64_cuda_compiler_versionNonecxx_compiler_version14mpimpich
+      linux_64_cuda_compiler_versionNonempimpich:
+        CONFIG: linux_64_cuda_compiler_versionNonempimpich
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_64_cuda_compiler_versionNonecxx_compiler_version14mpiopenmpi:
-        CONFIG: linux_64_cuda_compiler_versionNonecxx_compiler_version14mpiopenmpi
+      linux_64_cuda_compiler_versionNonempiopenmpi:
+        CONFIG: linux_64_cuda_compiler_versionNonempiopenmpi
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_aarch64_cuda_compiler_version12.6cxx_compiler_version13mpimpich:
-        CONFIG: linux_aarch64_cuda_compiler_version12.6cxx_compiler_version13mpimpich
+      linux_aarch64_cuda_compiler_version12.9mpimpich:
+        CONFIG: linux_aarch64_cuda_compiler_version12.9mpimpich
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_aarch64_cuda_compiler_version12.6cxx_compiler_version13mpiopenmpi:
-        CONFIG: linux_aarch64_cuda_compiler_version12.6cxx_compiler_version13mpiopenmpi
+      linux_aarch64_cuda_compiler_version12.9mpiopenmpi:
+        CONFIG: linux_aarch64_cuda_compiler_version12.9mpiopenmpi
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_aarch64_cuda_compiler_versionNonecxx_compiler_version14mpimpich:
-        CONFIG: linux_aarch64_cuda_compiler_versionNonecxx_compiler_version14mpimpich
+      linux_aarch64_cuda_compiler_versionNonempimpich:
+        CONFIG: linux_aarch64_cuda_compiler_versionNonempimpich
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_aarch64_cuda_compiler_versionNonecxx_compiler_version14mpiopenmpi:
-        CONFIG: linux_aarch64_cuda_compiler_versionNonecxx_compiler_version14mpiopenmpi
+      linux_aarch64_cuda_compiler_versionNonempiopenmpi:
+        CONFIG: linux_aarch64_cuda_compiler_versionNonempiopenmpi
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
   timeoutInMinutes: 360
