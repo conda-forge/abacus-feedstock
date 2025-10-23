@@ -1,5 +1,5 @@
 {% set name = "abacus" %}
-{% set version = "3.9.0.2" %}
+{% set version = "3.9.0.16" %}
 {% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 package:
@@ -8,9 +8,9 @@ package:
 
 source:
   - url: https://github.com/deepmodeling/abacus-develop/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: faf7d517a604cd860eff5901c4e1d3cc3b8daa7d314ffa69e8f075dca6ad0937
-  - url: https://github.com/abacusmodeling/LibRI/archive/refs/tags/v0.2.1.0.zip
-    sha256: 688378bb720dcaf11336af26729493b673e8c6f14a4c2128e000f6cc24d5ac44
+    sha256: 4bc0607b3202b177a79d4a5be66045d251675619fd233af3e46aa23701e6d769
+  - url: https://github.com/abacusmodeling/LibRI/archive/refs/tags/v0.2.1.1.zip
+    sha256: a54dc7ceec1ca5a2bbf258867ac9abb31133b7616fb22352004c0d2ff0e45513
     folder: deps/LibRI
   - url: https://github.com/abacusmodeling/LibComm/archive/refs/tags/v0.1.1.zip
     sha256: 8913ca444008957951cf851a92f0b6982e1479ab7c56723e0dba0aeabf879e58
