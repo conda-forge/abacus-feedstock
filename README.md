@@ -89,6 +89,20 @@ Current build status
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_versionNonecxx_compiler_version14mpiopenmpi" alt="variant">
                 </a>
               </td>
+            </tr><tr>
+              <td>linux_ppc64le_mpimpich</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19956&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_mpimpich" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_mpiopenmpi</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=19956&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/abacus-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_mpiopenmpi" alt="variant">
+                </a>
+              </td>
             </tr>
           </tbody>
         </table>
