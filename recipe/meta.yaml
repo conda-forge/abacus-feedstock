@@ -85,6 +85,7 @@ requirements:
     - cuda-nvtx-dev    # [(cuda_compiler_version or "").startswith("12")]
     - libcurand-dev    # [(cuda_compiler_version or "").startswith("12")]
     - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
+    - cuda-cccl        # [(cuda_compiler_version or "").startswith("12")]
     - elpa
     - elpa * mpi_{{ mpi }}_*
     - fftw
