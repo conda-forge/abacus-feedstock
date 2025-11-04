@@ -24,13 +24,13 @@ build:
     # Below is copied from https://github.com/conda-forge/llama.cpp-feedstock/pull/76
     # This is a hotfix for https://github.com/NVIDIA/cccl/issues/4967, backporting
     # https://github.com/NVIDIA/cccl/pull/4972 on the fly for the installed headers
-    {%- if match(cuda_compiler_version, "12.*") and linux and x86_64 %}
+    {%- if cuda_compiler_version.startswith("12") and linux and x86_64 %}
     CCCL_PREPROCESSOR_H_TO_PATCH="$PREFIX/targets/x86_64-linux/include/cuda/std/__cccl/preprocessor.h"
     {%- endif %}
-    {%- if match(cuda_compiler_version, "12.*") and linux and aarch64 %}
+    {%- if cuda_compiler_version.startswith("12") and linux and aarch64 %}
     CCCL_PREPROCESSOR_H_TO_PATCH="$PREFIX/targets/sbsa-linux/include/cuda/std/__cccl/preprocessor.h"
     {%- endif %}
-    {%- if match(cuda_compiler_version, "12.*") and linux %}
+    {%- if cuda_compiler_version.startswith("12") and linux %}
     ROOT_DIR="$(dirname "${CCCL_PREPROCESSOR_H_TO_PATCH}")/../../../.."
     patch -p1 -d "${ROOT_DIR}" -i "${RECIPE_DIR}/cuda12_cccl_arch_all.patch"
     {%- endif %}
@@ -45,7 +45,7 @@ build:
         export TORCH_CUDA_ARCH_LIST="3.5;5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9+PTX"
         export CUDA_TOOLKIT_ROOT=${CUDA_HOME}
     elif [[ ${cuda_compiler_version} == 12.* ]]; then
-        export TORCH_CUDA_ARCH_LIST="5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9;9.0+PTX"
+        export TORCH_CUDA_ARCH_LIST="5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9;9.0;10.0;12.0+PTX"
         export CUDA_TOOLKIT_ROOT=${PREFIX}
     elif [[ ${cuda_compiler_version} != "None" ]]; then
         echo "unsupported cuda version."
