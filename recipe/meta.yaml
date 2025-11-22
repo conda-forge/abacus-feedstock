@@ -29,7 +29,11 @@ build:
       ROOT_DIR="$(dirname "${CCCL_PREPROCESSOR_H_TO_PATCH}")/../../../.."
       patch -p1 -d "${ROOT_DIR}" -i "${RECIPE_DIR}/cuda12_cccl_arch_all.patch"
 
-      export CMAKE_ARGS="-DUSE_CUDA=1 ${CMAKE_ARGS}"
+      export CMAKE_ARGS="-DUSE_CUDA=1 -DCUDAToolkit_ROOT=${PREFIX} ${CMAKE_ARGS}"
+      ARCH="$(uname -m)"
+      export LIBRARY_PATH="${PREFIX}/targets/${ARCH}-linux/lib:${PREFIX}/lib:${LIBRARY_PATH}"
+      export LDFLAGS="-L${PREFIX}/targets/${ARCH}-linux/lib -L${PREFIX}/lib ${LDFLAGS}"
+      export CMAKE_PREFIX_PATH="${PREFIX}/targets/${ARCH}-linux:${PREFIX}:${CMAKE_PREFIX_PATH}"
     fi
     if [[ ${cuda_compiler_version} == 11.2 ]]; then
         export TORCH_CUDA_ARCH_LIST="3.5;5.0;6.0;6.1;7.0;7.5;8.0;8.6"
@@ -40,8 +44,14 @@ build:
         export CUDA_ARCHS="35;50;60;61;70;75;80;86;89"
         export CUDA_TOOLKIT_ROOT=${CUDA_HOME}
     elif [[ ${cuda_compiler_version} == 12.* ]]; then
-        export TORCH_CUDA_ARCH_LIST="5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9;9.0"
-        export CUDA_ARCHS="50;60;61;70;75;80;86;89;90"
+        TORCH_LIST="5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9;9.0;10.0"
+        CUDA_LIST="50;60;61;70;75;80;86;89;90;100"
+        if [[ "${ABACUS_INCLUDE_CC120:-0}" == "1" ]]; then
+            TORCH_LIST="${TORCH_LIST};12.0"
+            CUDA_LIST="${CUDA_LIST};120"
+        fi
+        export TORCH_CUDA_ARCH_LIST="${TORCH_LIST}"
+        export CUDA_ARCHS="${CUDA_LIST}"
         export CUDA_TOOLKIT_ROOT=${PREFIX}
     elif [[ ${cuda_compiler_version} != "None" ]]; then
         echo "unsupported cuda version."
