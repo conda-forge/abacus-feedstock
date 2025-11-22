@@ -180,6 +180,29 @@ Switching MPI and Math Libraries
   - MKL:
     - `conda install abacus "libblas=*=*mkl" "liblapack=*=*mkl" "scalapack=*=*mkl" -c conda-forge`
 
+Optional ML components (DeepKS / MLALGO)
+========================================
+
+- Overview:
+  - Machine-learning components are optional and disabled by default to maximize compatibility.
+  - Enabling them is controlled via the environment variable `ABACUS_ENABLE_ML` at build time.
+
+- How to enable ML when building locally:
+  - `ABACUS_ENABLE_ML=1 conda build .`
+  - With mamba: `ABACUS_ENABLE_ML=1 mamba build .`
+
+- Version-specific CMake flags:
+  - For 3.9.0.x: `-DENABLE_MLALGO=1` is passed to CMake.
+  - For ≥ 3.10.x: `-DENABLE_DEEPKS=1` is passed to CMake.
+
+- Dependencies when ML is enabled:
+  - `libtorch` becomes a required host and run dependency and is selected according to CPU/GPU variant.
+  - Ensure the selected `libtorch` provides the C++ API features used by ABACUS (e.g., `torch::linalg::eigh`).
+
+- Notes:
+  - Published binaries on conda-forge may be built without ML unless otherwise indicated.
+  - If you need ML-enabled packages from CI, consider proposing a dedicated build variant to the feedstock.
+
 
 About conda-forge
 =================
