@@ -29,11 +29,7 @@ build:
       ROOT_DIR="$(dirname "${CCCL_PREPROCESSOR_H_TO_PATCH}")/../../../.."
       patch -p1 -d "${ROOT_DIR}" -i "${RECIPE_DIR}/cuda12_cccl_arch_all.patch"
 
-      export CMAKE_ARGS="-DUSE_CUDA=1 -DCUDAToolkit_ROOT=${PREFIX} ${CMAKE_ARGS}"
-      ARCH="$(uname -m)"
-      export LIBRARY_PATH="${PREFIX}/targets/${ARCH}-linux/lib:${PREFIX}/lib:${LIBRARY_PATH}"
-      export LDFLAGS="-L${PREFIX}/targets/${ARCH}-linux/lib -L${PREFIX}/lib ${LDFLAGS}"
-      export CMAKE_PREFIX_PATH="${PREFIX}/targets/${ARCH}-linux:${PREFIX}:${CMAKE_PREFIX_PATH}"
+      export CMAKE_ARGS="-DUSE_CUDA=1 ${CMAKE_ARGS}"
     fi
     if [[ ${cuda_compiler_version} == 11.2 ]]; then
         export TORCH_CUDA_ARCH_LIST="3.5;5.0;6.0;6.1;7.0;7.5;8.0;8.6"
