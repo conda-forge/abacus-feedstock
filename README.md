@@ -7,13 +7,13 @@ Home: https://abacus.ustc.edu.cn/
 
 Package license: LGPL-3.0-only AND MIT
 
-Summary: An electronic structure package based on plane wave and numerical atomic basis sets.
+Summary: An Chinese open-source electronic structure package based on both plane wave and numerical atomic basis sets.
 
 Development: https://github.com/deepmodeling/abacus-develop
 
 Documentation: https://abacus.deepmodeling.com/
 
-ABACUS (Atomic-orbital Based Ab-initio Computation at UStc) is an open-source package based on density functional theory (DFT). The package utilizes both plane wave and numerical atomic basis sets with the usage of norm-conserving pseudopotentials to describe the interactions between nuclear ions and valence electrons. ABACUS supports LDA, GGA, meta-GGA, and hybrid functionals. Apart from single-point calculations, the package allows geometry optimizations and ab-initio molecular dynamics with various ensembles.
+ABACUS (Atomic-orbital Based Ab-initio Computation at UStc) is an Chinese open-source package based on density functional theory (DFT). The package utilizes both plane wave and numerical atomic basis sets with the usage of norm-conserving pseudopotentials to describe the interactions between nuclear ions and valence electrons. ABACUS supports LDA, GGA, meta-GGA, and hybrid functionals. Apart from single-point calculations, the package allows geometry optimizations and ab-initio molecular dynamics with various ensembles.
 
 
 Current build status
@@ -152,6 +152,35 @@ mamba repoquery depends abacus --channel conda-forge
 ```
 
 
+Selecting a specific version
+============================
+
+- Stable (default): `conda install -c conda-forge abacus` or `mamba install -c conda-forge abacus` installs the latest stable release (currently 3.10.x).
+- Development line (3.9.0.x): install the highest available 3.9.0.x version for testing:
+  - Using a version constraint:
+    - `conda install -c conda-forge "abacus=3.9.*"`
+    - `mamba install -c conda-forge "abacus=3.9.*"`
+  - Using a version range:
+    - `conda install -c conda-forge "abacus>=3.9,<3.10"`
+    - `mamba install -c conda-forge "abacus>=3.9,<3.10"`
+  - Query the highest available 3.9.x first:
+    - `conda search abacus -c conda-forge | grep "^3.9"`
+    - `mamba repoquery search abacus -c conda-forge | grep "^3.9"`
+
+Switching MPI and Math Libraries
+================================
+
+- MPI selection:
+  - MPICH: `conda install abacus mpich -c conda-forge`
+  - OpenMPI: `conda install abacus openmpi -c conda-forge`
+
+- Math libraries (BLAS/LAPACK vendor):
+  - OpenBLAS (default):
+    - `conda install abacus "libblas=*=*openblas" "liblapack=*=*openblas" "scalapack=*=*openblas" -c conda-forge`
+  - MKL:
+    - `conda install abacus "libblas=*=*mkl" "liblapack=*=*mkl" "scalapack=*=*mkl" -c conda-forge`
+
+
 About conda-forge
 =================
 
@@ -221,4 +250,5 @@ Feedstock Maintainers
 * [@caic99](https://github.com/caic99/)
 * [@dyzheng](https://github.com/dyzheng/)
 * [@njzjz](https://github.com/njzjz/)
+* [@QuantumMisaka](https://github.com/QuantumMisaka/)
 
