@@ -7,13 +7,13 @@ Home: https://abacus.ustc.edu.cn/
 
 Package license: LGPL-3.0-only AND MIT
 
-Summary: An Chinese open-source electronic structure package based on both plane wave and numerical atomic basis sets.
+Summary: An open-source electronic structure package based on both plane wave and numerical atomic basis sets.
 
 Development: https://github.com/deepmodeling/abacus-develop
 
 Documentation: https://abacus.deepmodeling.com/
 
-ABACUS (Atomic-orbital Based Ab-initio Computation at UStc) is an Chinese open-source package based on density functional theory (DFT). The package utilizes both plane wave and numerical atomic basis sets with the usage of norm-conserving pseudopotentials to describe the interactions between nuclear ions and valence electrons. ABACUS supports LDA, GGA, meta-GGA, and hybrid functionals. Apart from single-point calculations, the package allows geometry optimizations and ab-initio molecular dynamics with various ensembles.
+ABACUS (Atomic-orbital Based Ab-initio Computation at UStc) is an open-source package based on density functional theory (DFT). The package utilizes both plane wave and numerical atomic basis sets with the usage of norm-conserving pseudopotentials to describe the interactions between nuclear ions and valence electrons. ABACUS supports LDA, GGA, meta-GGA, and hybrid functionals. Apart from single-point calculations, the package allows geometry optimizations and ab-initio molecular dynamics with various ensembles.
 
 
 Current build status
