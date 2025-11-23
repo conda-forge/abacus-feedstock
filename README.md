@@ -7,7 +7,7 @@ Home: https://abacus.ustc.edu.cn/
 
 Package license: LGPL-3.0-only AND MIT
 
-Summary: An open-source electronic structure package based on both plane wave and numerical atomic basis sets.
+Summary: An electronic structure package based on plane wave and numerical atomic basis sets.
 
 Development: https://github.com/deepmodeling/abacus-develop
 
@@ -152,58 +152,6 @@ mamba repoquery depends abacus --channel conda-forge
 ```
 
 
-Selecting a specific version
-============================
-
-- Stable (default): `conda install -c conda-forge abacus` or `mamba install -c conda-forge abacus` installs the latest stable release (currently 3.10.x).
-- Development line (3.9.0.x): install the highest available 3.9.0.x version for testing:
-  - Using a version constraint:
-    - `conda install -c conda-forge "abacus=3.9.*"`
-    - `mamba install -c conda-forge "abacus=3.9.*"`
-  - Using a version range:
-    - `conda install -c conda-forge "abacus>=3.9,<3.10"`
-    - `mamba install -c conda-forge "abacus>=3.9,<3.10"`
-  - Query the highest available 3.9.x first:
-    - `conda search abacus -c conda-forge | grep "^3.9"`
-    - `mamba repoquery search abacus -c conda-forge | grep "^3.9"`
-
-Switching MPI and Math Libraries
-================================
-
-- MPI selection:
-  - MPICH: `conda install abacus mpich -c conda-forge`
-  - OpenMPI: `conda install abacus openmpi -c conda-forge`
-
-- Math libraries (BLAS/LAPACK vendor):
-  - OpenBLAS (default):
-    - `conda install abacus "libblas=*=*openblas" "liblapack=*=*openblas" "scalapack=*=*openblas" -c conda-forge`
-  - MKL:
-    - `conda install abacus "libblas=*=*mkl" "liblapack=*=*mkl" "scalapack=*=*mkl" -c conda-forge`
-
-Optional ML components (DeepKS / MLALGO)
-========================================
-
-- Overview:
-  - Machine-learning components are optional and disabled by default to maximize compatibility.
-  - Enabling them is controlled via the environment variable `ABACUS_ENABLE_MLALGO` at build time.
-
-- How to enable MLALGO when building locally:
-  - `ABACUS_ENABLE_MLALGO=1 conda build .`
-  - With mamba: `ABACUS_ENABLE_MLALGO=1 mamba build .`
-
-- Version-specific CMake flags:
-  - For 3.9.0.x: `-DENABLE_MLALGO=1` is passed to CMake.
-  - For ≥ 3.10.x: `-DENABLE_DEEPKS=1` is passed to CMake.
-
-- Dependencies when MLALGO is enabled:
-  - `libtorch` becomes a required host and run dependency and is selected according to CPU/GPU variant.
-  - Ensure the selected `libtorch` provides the C++ API features used by ABACUS (e.g., `torch::linalg::eigh`).
-
-- Notes:
-  - Published binaries on conda-forge may be built without ML unless otherwise indicated.
-  - If you need ML-enabled packages from CI, consider proposing a dedicated build variant to the feedstock.
-
-
 About conda-forge
 =================
 
@@ -270,8 +218,8 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@QuantumMisaka](https://github.com/QuantumMisaka/)
 * [@caic99](https://github.com/caic99/)
 * [@dyzheng](https://github.com/dyzheng/)
 * [@njzjz](https://github.com/njzjz/)
-* [@QuantumMisaka](https://github.com/QuantumMisaka/)
 
