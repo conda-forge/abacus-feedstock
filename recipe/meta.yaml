@@ -83,13 +83,11 @@ requirements:
     - cereal
     - libxc-c
     - libxc-c * cpu_*
-{% endif %}
 
   run:
     - {{ mpi }}
     - libxc-c
     - scalapack
-{% endif %}
 
 test:
   commands:
