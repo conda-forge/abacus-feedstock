@@ -23,7 +23,7 @@ libblas:
 liblapack:
 - 3.9.* *netlib
 libtorch:
-- '2.8'
+- '2.9'
 mpi:
 - openmpi
 mpich:
