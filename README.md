@@ -218,6 +218,7 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@QuantumMisaka](https://github.com/QuantumMisaka/)
 * [@caic99](https://github.com/caic99/)
 * [@dyzheng](https://github.com/dyzheng/)
 * [@njzjz](https://github.com/njzjz/)
