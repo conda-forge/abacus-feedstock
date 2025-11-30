@@ -8,36 +8,52 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_cuda_compiler_version12.9mpimpich:
-        CONFIG: linux_64_cuda_compiler_version12.9mpimpich
+      linux_64_c_stdlib_version2.17cuda_compiler_version12.9mpimpich:
+        CONFIG: linux_64_c_stdlib_version2.17cuda_compiler_version12.9mpimpich
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_64_cuda_compiler_version12.9mpiopenmpi:
-        CONFIG: linux_64_cuda_compiler_version12.9mpiopenmpi
+      linux_64_c_stdlib_version2.17cuda_compiler_version12.9mpiopenmpi:
+        CONFIG: linux_64_c_stdlib_version2.17cuda_compiler_version12.9mpiopenmpi
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_64_cuda_compiler_versionNonempimpich:
-        CONFIG: linux_64_cuda_compiler_versionNonempimpich
+      linux_64_c_stdlib_version2.17cuda_compiler_versionNonempimpich:
+        CONFIG: linux_64_c_stdlib_version2.17cuda_compiler_versionNonempimpich
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_64_cuda_compiler_versionNonempiopenmpi:
-        CONFIG: linux_64_cuda_compiler_versionNonempiopenmpi
+      linux_64_c_stdlib_version2.17cuda_compiler_versionNonempiopenmpi:
+        CONFIG: linux_64_c_stdlib_version2.17cuda_compiler_versionNonempiopenmpi
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_aarch64_cuda_compiler_version12.9mpimpich:
-        CONFIG: linux_aarch64_cuda_compiler_version12.9mpimpich
+      linux_64_c_stdlib_version2.28cuda_compiler_version13.0mpimpich:
+        CONFIG: linux_64_c_stdlib_version2.28cuda_compiler_version13.0mpimpich
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_aarch64_cuda_compiler_version12.9mpiopenmpi:
-        CONFIG: linux_aarch64_cuda_compiler_version12.9mpiopenmpi
+      linux_64_c_stdlib_version2.28cuda_compiler_version13.0mpiopenmpi:
+        CONFIG: linux_64_c_stdlib_version2.28cuda_compiler_version13.0mpiopenmpi
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_aarch64_cuda_compiler_versionNonempimpich:
-        CONFIG: linux_aarch64_cuda_compiler_versionNonempimpich
+      linux_aarch64_c_stdlib_version2.17cuda_compiler_version12.9mpimpich:
+        CONFIG: linux_aarch64_c_stdlib_version2.17cuda_compiler_version12.9mpimpich
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_aarch64_cuda_compiler_versionNonempiopenmpi:
-        CONFIG: linux_aarch64_cuda_compiler_versionNonempiopenmpi
+      linux_aarch64_c_stdlib_version2.17cuda_compiler_version12.9mpiopenmpi:
+        CONFIG: linux_aarch64_c_stdlib_version2.17cuda_compiler_version12.9mpiopenmpi
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_aarch64_c_stdlib_version2.17cuda_compiler_versionNonempimpich:
+        CONFIG: linux_aarch64_c_stdlib_version2.17cuda_compiler_versionNonempimpich
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_aarch64_c_stdlib_version2.17cuda_compiler_versionNonempiopenmpi:
+        CONFIG: linux_aarch64_c_stdlib_version2.17cuda_compiler_versionNonempiopenmpi
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_aarch64_c_stdlib_version2.28cuda_compiler_version13.0mpimpich:
+        CONFIG: linux_aarch64_c_stdlib_version2.28cuda_compiler_version13.0mpimpich
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_aarch64_c_stdlib_version2.28cuda_compiler_version13.0mpiopenmpi:
+        CONFIG: linux_aarch64_c_stdlib_version2.28cuda_compiler_version13.0mpiopenmpi
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
   timeoutInMinutes: 360
