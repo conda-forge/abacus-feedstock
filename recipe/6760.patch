@@ -40,13 +40,13 @@ Date: Tue, 9 Dec 2025 10:50:06 +0800
 Subject: [PATCH 2/2] Update global.h
 
 ---
- source/source_pw/module_pwdft/global.h | 20 +++++++++++++-------
+ source/module_hamilt_pw/hamilt_pwdft/global.h | 20 +++++++++++++-------
  1 file changed, 13 insertions(+), 7 deletions(-)
 
-diff --git a/source/source_pw/module_pwdft/global.h b/source/source_pw/module_pwdft/global.h
+diff --git a/source/module_hamilt_pw/hamilt_pwdft/global.h b/source/module_hamilt_pw/hamilt_pwdft/global.h
 index 5080ddc24d..c7eb74192f 100644
---- a/source/source_pw/module_pwdft/global.h
-+++ b/source/source_pw/module_pwdft/global.h
+--- a/source/module_hamilt_pw/hamilt_pwdft/global.h
++++ b/source/module_hamilt_pw/hamilt_pwdft/global.h
 @@ -15,6 +15,7 @@
  #include "source_hamilt/module_xc/xc_functional.h"
  #ifdef __CUDA
