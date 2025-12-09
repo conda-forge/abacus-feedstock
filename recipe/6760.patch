@@ -1,7 +1,7 @@
 From 1635f3e3cd0a4debf0a61c026f1bfd6bb1f2a818 Mon Sep 17 00:00:00 2001
 From: Levi Zhou <31941107+ZhouXY-PKU@users.noreply.github.com>
 Date: Thu, 4 Dec 2025 15:17:49 +0800
-Subject: [PATCH] Update CMakeLists.txt
+Subject: [PATCH 1/2] Update CMakeLists.txt
 
 ---
  CMakeLists.txt | 8 +++++++-
@@ -33,3 +33,60 @@ index 9438a1919a..37302f998f 100644
    set(CMAKE_CXX_EXTENSIONS ON)
    set(CMAKE_CUDA_STANDARD ${CMAKE_CXX_STANDARD})
    set(CMAKE_CUDA_STANDARD_REQUIRED ON)
+
+From 3b9d26df4e7d042c03018f529d2d6c7d96d2b5c2 Mon Sep 17 00:00:00 2001
+From: Levi Zhou <31941107+ZhouXY-PKU@users.noreply.github.com>
+Date: Tue, 9 Dec 2025 10:50:06 +0800
+Subject: [PATCH 2/2] Update global.h
+
+---
+ source/source_pw/module_pwdft/global.h | 20 +++++++++++++-------
+ 1 file changed, 13 insertions(+), 7 deletions(-)
+
+diff --git a/source/source_pw/module_pwdft/global.h b/source/source_pw/module_pwdft/global.h
+index 5080ddc24d..c7eb74192f 100644
+--- a/source/source_pw/module_pwdft/global.h
++++ b/source/source_pw/module_pwdft/global.h
+@@ -15,6 +15,7 @@
+ #include "source_hamilt/module_xc/xc_functional.h"
+ #ifdef __CUDA
+ #include "cublas_v2.h"
++#include <cuda.h> // for CUDA_VERSION
+ #include "cufft.h"
+ 
+ static const char* _cublasGetErrorString(cublasStatus_t error)
+@@ -65,22 +66,27 @@ static const char* _cufftGetErrorString(cufftResult_t error)
+         return "CUFFT_INVALID_SIZE";
+     case CUFFT_UNALIGNED_DATA:
+         return "CUFFT_UNALIGNED_DATA";
+-    case CUFFT_INCOMPLETE_PARAMETER_LIST:
+-        return "CUFFT_INCOMPLETE_PARAMETER_LIST";
+     case CUFFT_INVALID_DEVICE:
+         return "CUFFT_INVALID_DEVICE";
+-    case CUFFT_PARSE_ERROR:
+-        return "CUFFT_PARSE_ERROR";
+     case CUFFT_NO_WORKSPACE:
+         return "CUFFT_NO_WORKSPACE";
+     case CUFFT_NOT_IMPLEMENTED:
+         return "CUFFT_NOT_IMPLEMENTED";
+-    case CUFFT_LICENSE_ERROR:
+-        return "CUFFT_LICENSE_ERROR";
+     case CUFFT_NOT_SUPPORTED:
+         return "CUFFT_NOT_SUPPORTED";
++
++#if defined(CUDA_VERSION) && CUDA_VERSION < 13000
++    case CUFFT_INCOMPLETE_PARAMETER_LIST:
++        return "CUFFT_INCOMPLETE_PARAMETER_LIST";
++    case CUFFT_PARSE_ERROR:
++        return "CUFFT_PARSE_ERROR";
++    case CUFFT_LICENSE_ERROR:
++        return "CUFFT_LICENSE_ERROR";
++#endif
++    
++    default:
++        return "<unknown>";
+     }
+-    return "<unknown>";
+ }
+ 
+ #define CHECK_CUDA(func)                                                                                               \
