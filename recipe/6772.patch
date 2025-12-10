@@ -1,7 +1,7 @@
 From 902a454e6e74a432a8844283fe85f98f4561641d Mon Sep 17 00:00:00 2001
 From: Levi Zhou <31941107+ZhouXY-PKU@users.noreply.github.com>
 Date: Tue, 9 Dec 2025 20:12:37 +0800
-Subject: [PATCH] Update device.cpp
+Subject: [PATCH 1/2] Update device.cpp
 
 ---
  source/module_base/module_device/device.cpp | 17 ++++++++++++-----
@@ -86,3 +86,67 @@ index b20ea9f3ad..08cc6e90c7 100644
 -} // end of namespace base_device
 \ No newline at end of file
 +} // end of namespace base_device
+
+From 684cce74759bf61cd77286ce019f37a6f201e641 Mon Sep 17 00:00:00 2001
+From: Levi Zhou <31941107+ZhouXY-PKU@users.noreply.github.com>
+Date: Wed, 10 Dec 2025 07:56:45 +0800
+Subject: [PATCH 2/2] Update helper_cuda.h
+
+---
+ .../module_hsolver/kernels/cuda/helper_cuda.h | 23 +++++++++++--------
+ 1 file changed, 13 insertions(+), 10 deletions(-)
+
+diff --git a/source/module_hsolver/kernels/cuda/helper_cuda.h b/source/module_hsolver/kernels/cuda/helper_cuda.h
+index e61e4597f6..afdc774705 100644
+--- a/source/module_hsolver/kernels/cuda/helper_cuda.h
++++ b/source/module_hsolver/kernels/cuda/helper_cuda.h
+@@ -137,30 +137,33 @@ static const char *_cudaGetErrorEnum(cufftResult error) {
+ 
+     case CUFFT_UNALIGNED_DATA:
+       return "CUFFT_UNALIGNED_DATA";
+-
+-    case CUFFT_INCOMPLETE_PARAMETER_LIST:
+-      return "CUFFT_INCOMPLETE_PARAMETER_LIST";
+-
++    
+     case CUFFT_INVALID_DEVICE:
+       return "CUFFT_INVALID_DEVICE";
+ 
+-    case CUFFT_PARSE_ERROR:
+-      return "CUFFT_PARSE_ERROR";
+-
+     case CUFFT_NO_WORKSPACE:
+       return "CUFFT_NO_WORKSPACE";
+ 
+     case CUFFT_NOT_IMPLEMENTED:
+       return "CUFFT_NOT_IMPLEMENTED";
+ 
++#if defined(CUDA_VERSION) && CUDA_VERSION < 13000
++    case CUFFT_INCOMPLETE_PARAMETER_LIST:
++      return "CUFFT_INCOMPLETE_PARAMETER_LIST";
++
++    case CUFFT_PARSE_ERROR:
++      return "CUFFT_PARSE_ERROR";
++
+     case CUFFT_LICENSE_ERROR:
+       return "CUFFT_LICENSE_ERROR";
++#endif
+ 
+     case CUFFT_NOT_SUPPORTED:
+       return "CUFFT_NOT_SUPPORTED";
++  
++    default:
++      return "<unknown>";
+   }
+-
+-  return "<unknown>";
+ }
+ #endif
+ 
+@@ -965,4 +968,4 @@ inline bool checkCudaCapabilities(int major_version, int minor_version) {
+ 
+   // end of CUDA Helper Functions
+ 
+-#endif  // COMMON_HELPER_CUDA_H_
+\ No newline at end of file
++#endif  // COMMON_HELPER_CUDA_H_
