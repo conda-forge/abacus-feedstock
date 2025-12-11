@@ -1,0 +1,152 @@
+From 902a454e6e74a432a8844283fe85f98f4561641d Mon Sep 17 00:00:00 2001
+From: Levi Zhou <31941107+ZhouXY-PKU@users.noreply.github.com>
+Date: Tue, 9 Dec 2025 20:12:37 +0800
+Subject: [PATCH 1/2] Update device.cpp
+
+---
+ source/module_base/module_device/device.cpp | 17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
+
+diff --git a/source/module_base/module_device/device.cpp b/source/module_base/module_device/device.cpp
+index b20ea9f3ad..08cc6e90c7 100644
+--- a/source/module_base/module_device/device.cpp
++++ b/source/module_base/module_device/device.cpp
+@@ -12,6 +12,7 @@
+ 
+ #if defined(__CUDA)
+ #include <cuda_runtime.h>
++#include <cuda.h>
+ #endif
+ 
+ #if defined(__ROCM)
+@@ -299,6 +300,7 @@ void print_device_info<base_device::DEVICE_GPU>(
+   sprintf(msg, "  CUDA Capability Major/Minor version number:    %d.%d\n",
+           deviceProp.major, deviceProp.minor);
+   ofs_device << msg << std::endl;
++#if defined(CUDA_VERSION) && CUDA_VERSION < 13000
+   sprintf(msg,
+           "  GPU Max Clock rate:                            %.0f MHz (%0.2f "
+           "GHz)\n",
+@@ -312,6 +314,7 @@ void print_device_info<base_device::DEVICE_GPU>(
+   sprintf(msg, "  Memory Bus Width:                              %d-bit\n",
+           deviceProp.memoryBusWidth);
+   ofs_device << msg << std::endl;
++#endif
+   sprintf(msg,
+           "  Maximum Texture Dimension Size (x,y,z)         1D=(%d), 2D=(%d, "
+           "%d), 3D=(%d, %d, %d)\n",
+@@ -366,6 +369,7 @@ void print_device_info<base_device::DEVICE_GPU>(
+   sprintf(msg, "  Texture alignment:                             %zu bytes\n",
+           deviceProp.textureAlignment);
+   ofs_device << msg << std::endl;
++#if defined(CUDA_VERSION) && CUDA_VERSION < 13000
+   sprintf(msg,
+           "  Concurrent copy and kernel execution:          %s with %d copy "
+           "engine(s)\n",
+@@ -375,6 +379,7 @@ void print_device_info<base_device::DEVICE_GPU>(
+   sprintf(msg, "  Run time limit on kernels:                     %s\n",
+           deviceProp.kernelExecTimeoutEnabled ? "Yes" : "No");
+   ofs_device << msg << std::endl;
++#endif
+   sprintf(msg, "  Integrated GPU sharing Host Memory:            %s\n",
+           deviceProp.integrated ? "Yes" : "No");
+   ofs_device << msg << std::endl;
+@@ -399,13 +404,15 @@ void print_device_info<base_device::DEVICE_GPU>(
+   sprintf(msg, "  Supports Cooperative Kernel Launch:            %s\n",
+           deviceProp.cooperativeLaunch ? "Yes" : "No");
+   ofs_device << msg << std::endl;
+-  sprintf(msg, "  Supports MultiDevice Co-op Kernel Launch:      %s\n",
+-          deviceProp.cooperativeMultiDeviceLaunch ? "Yes" : "No");
+-  ofs_device << msg << std::endl;
+   sprintf(msg,
+           "  Device PCI Domain ID / Bus ID / location ID:   %d / %d / %d\n",
+           deviceProp.pciDomainID, deviceProp.pciBusID, deviceProp.pciDeviceID);
+   ofs_device << msg << std::endl;
++#if defined(CUDA_VERSION) && CUDA_VERSION < 13000
++  sprintf(msg, "  Supports MultiDevice Co-op Kernel Launch:      %s\n",
++          deviceProp.cooperativeMultiDeviceLaunch ? "Yes" : "No");
++  ofs_device << msg << std::endl;
++
+   const char *sComputeMode[] = {
+       "Default (multiple host threads can use ::cudaSetDevice() with device "
+       "simultaneously)",
+@@ -421,7 +428,7 @@ void print_device_info<base_device::DEVICE_GPU>(
+   ofs_device << msg << std::endl;
+   ofs_device << "  " << sComputeMode[deviceProp.computeMode] << std::endl
+              << std::endl;
+-
++#endif
+   // If there are 2 or more GPUs, query to determine whether RDMA is supported
+   if (deviceCount >= 2) {
+     cudaDeviceProp prop[64];
+@@ -711,4 +718,4 @@ void record_device_memory<base_device::DEVICE_GPU>(
+ #endif
+ 
+ } // end of namespace information
+-} // end of namespace base_device
+\ No newline at end of file
++} // end of namespace base_device
+
+From 684cce74759bf61cd77286ce019f37a6f201e641 Mon Sep 17 00:00:00 2001
+From: Levi Zhou <31941107+ZhouXY-PKU@users.noreply.github.com>
+Date: Wed, 10 Dec 2025 07:56:45 +0800
+Subject: [PATCH 2/2] Update helper_cuda.h
+
+---
+ .../module_hsolver/kernels/cuda/helper_cuda.h | 23 +++++++++++--------
+ 1 file changed, 13 insertions(+), 10 deletions(-)
+
+diff --git a/source/module_hsolver/kernels/cuda/helper_cuda.h b/source/module_hsolver/kernels/cuda/helper_cuda.h
+index e61e4597f6..afdc774705 100644
+--- a/source/module_hsolver/kernels/cuda/helper_cuda.h
++++ b/source/module_hsolver/kernels/cuda/helper_cuda.h
+@@ -137,30 +137,33 @@ static const char *_cudaGetErrorEnum(cufftResult error) {
+ 
+     case CUFFT_UNALIGNED_DATA:
+       return "CUFFT_UNALIGNED_DATA";
+-
+-    case CUFFT_INCOMPLETE_PARAMETER_LIST:
+-      return "CUFFT_INCOMPLETE_PARAMETER_LIST";
+-
++    
+     case CUFFT_INVALID_DEVICE:
+       return "CUFFT_INVALID_DEVICE";
+ 
+-    case CUFFT_PARSE_ERROR:
+-      return "CUFFT_PARSE_ERROR";
+-
+     case CUFFT_NO_WORKSPACE:
+       return "CUFFT_NO_WORKSPACE";
+ 
+     case CUFFT_NOT_IMPLEMENTED:
+       return "CUFFT_NOT_IMPLEMENTED";
+ 
++#if defined(CUDA_VERSION) && CUDA_VERSION < 13000
++    case CUFFT_INCOMPLETE_PARAMETER_LIST:
++      return "CUFFT_INCOMPLETE_PARAMETER_LIST";
++
++    case CUFFT_PARSE_ERROR:
++      return "CUFFT_PARSE_ERROR";
++
+     case CUFFT_LICENSE_ERROR:
+       return "CUFFT_LICENSE_ERROR";
++#endif
+ 
+     case CUFFT_NOT_SUPPORTED:
+       return "CUFFT_NOT_SUPPORTED";
++  
++    default:
++      return "<unknown>";
+   }
+-
+-  return "<unknown>";
+ }
+ #endif
+ 
+@@ -965,4 +968,4 @@ inline bool checkCudaCapabilities(int major_version, int minor_version) {
+ 
+   // end of CUDA Helper Functions
+ 
+-#endif  // COMMON_HELPER_CUDA_H_
+\ No newline at end of file
++#endif  // COMMON_HELPER_CUDA_H_

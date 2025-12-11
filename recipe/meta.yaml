@@ -9,6 +9,9 @@ package:
 source:
   - url: https://github.com/deepmodeling/abacus-develop/archive/refs/tags/v{{ version }}.tar.gz
     sha256: 06873eba8a4e0bc085177a6580455b28e4b62ea8a18f8afe71a02105756d91a0
+    patches:
+      - 6760.patch
+      - 6772.patch
   - url: https://github.com/abacusmodeling/LibRI/archive/d4f732011c6c2d115f651c38796cf7ecf823393b.tar.gz
     sha256: 12ecd8caa18b30aebca7dd53b95ef17adedf71fe822ff776c2800d1bb954362d
     folder: deps/LibRI
@@ -18,37 +21,24 @@ source:
 
 build:
   script: |
-    if [[ ${cuda_compiler_version} != "None" ]]; then
+    if [[ ${cuda_compiler_version} == 12.* ]]; then
       # Below is copied from https://github.com/conda-forge/llama.cpp-feedstock/pull/76
       # This is a hotfix for https://github.com/NVIDIA/cccl/issues/4967, backporting
       # https://github.com/NVIDIA/cccl/pull/4972 on the fly for the installed headers
       CCCL_PREPROCESSOR_H_TO_PATCH="$PREFIX/include/cuda/std/__cccl/preprocessor.h"
       ROOT_DIR="$(dirname "${CCCL_PREPROCESSOR_H_TO_PATCH}")/../../../.."
       patch -p1 -d "${ROOT_DIR}" -i "${RECIPE_DIR}/cuda12_cccl_arch_all.patch"
-
-      export CMAKE_ARGS="-DUSE_CUDA=1 ${CMAKE_ARGS}"
     fi
-    if [[ ${cuda_compiler_version} == 11.2 ]]; then
-        export TORCH_CUDA_ARCH_LIST="3.5;5.0;6.0;6.1;7.0;7.5;8.0;8.6+PTX"
-        export CUDA_TOOLKIT_ROOT=${CUDA_HOME}
-    elif [[ ${cuda_compiler_version} == 11.8 ]]; then
-        export TORCH_CUDA_ARCH_LIST="3.5;5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9+PTX"
-        export CUDA_TOOLKIT_ROOT=${CUDA_HOME}
-    elif [[ ${cuda_compiler_version} == 12.* ]]; then
-        export TORCH_CUDA_ARCH_LIST="5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9;9.0;10.0;12.0+PTX"
-        export CUDA_TOOLKIT_ROOT=${PREFIX}
-    elif [[ ${cuda_compiler_version} != "None" ]]; then
-        echo "unsupported cuda version."
-        exit 1
+    if [[ ${cuda_compiler_version} != "None" ]]; then
+      export CMAKE_ARGS="-DUSE_CUDA=1 ${CMAKE_ARGS}"
+      export CUDA_TOOLKIT_ROOT=${PREFIX}
     fi
     export CUDAARCHS=all
-    cmake -B conda_build ${CMAKE_ARGS} -DCMAKE_BUILD_TYPE=Release -DENABLE_LIBXC=1 -DENABLE_LIBRI=1 -DGIT_SUBMODULE=0 -DLIBRI_DIR=$SRC_DIR/deps/LibRI -DLIBCOMM_DIR=$SRC_DIR/deps/LibComm -DBLA_VENDOR=Generic
+    cmake -B conda_build ${CMAKE_ARGS} -DCMAKE_BUILD_TYPE=Release -DENABLE_LIBXC=1 -DENABLE_LIBRI=1 -DGIT_SUBMODULE=0 -DLIBRI_DIR=$SRC_DIR/deps/LibRI -DLIBCOMM_DIR=$SRC_DIR/deps/LibComm -DBLA_VENDOR=Generic -DCMAKE_CXX_STANDARD=17
     cmake --build conda_build -j`nproc`
     cmake --install conda_build
-  number: 0
+  number: 1
   skip: true  # [not linux]
-  # upstream is not ready
-  skip: true  # [aarch64 and (cuda_compiler_version or "").startswith("11")]
   string: {{ proc_type }}_mpi_{{ mpi }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
 
 requirements:
@@ -67,15 +57,15 @@ requirements:
     - liblapack
     - scalapack
     - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
-    - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
-    - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
-    - libcufft-dev     # [(cuda_compiler_version or "").startswith("12")]
-    - cuda-driver-dev  # [(cuda_compiler_version or "").startswith("12")]
-    - cuda-nvrtc-dev   # [(cuda_compiler_version or "").startswith("12")]
-    - cuda-nvtx-dev    # [(cuda_compiler_version or "").startswith("12")]
-    - libcurand-dev    # [(cuda_compiler_version or "").startswith("12")]
-    - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
-    - cuda-cccl        # [(cuda_compiler_version or "").startswith("12")]
+    - libcublas-dev    # [cuda_compiler_version != "None"]
+    - libcusolver-dev  # [cuda_compiler_version != "None"]
+    - libcufft-dev     # [cuda_compiler_version != "None"]
+    - cuda-driver-dev  # [cuda_compiler_version != "None"]
+    - cuda-nvrtc-dev   # [cuda_compiler_version != "None"]
+    - cuda-nvtx-dev    # [cuda_compiler_version != "None"]
+    - libcurand-dev    # [cuda_compiler_version != "None"]
+    - cuda-cudart-dev  # [cuda_compiler_version != "None"]
+    - cuda-cccl        # [cuda_compiler_version != "None"]
     - elpa
     - elpa * mpi_{{ mpi }}_*
     - fftw
