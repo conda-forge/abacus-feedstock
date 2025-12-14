@@ -9,7 +9,7 @@ channel_targets:
 cuda_compiler:
 - cuda-nvcc
 cuda_compiler_version:
-- '12.9'
+- None
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -22,8 +22,10 @@ libblas:
 - 3.9.* *netlib
 liblapack:
 - 3.9.* *netlib
+microarch_level:
+- '1'
 mpi:
-- openmpi
+- mpich
 mpich:
 - '4'
 openmpi:
