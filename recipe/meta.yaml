@@ -84,7 +84,7 @@ requirements:
     - libxc-c
     - scalapack
 
-test:
+tests:
   - if: (microarch_level != 4)
     then:
       - commands:
