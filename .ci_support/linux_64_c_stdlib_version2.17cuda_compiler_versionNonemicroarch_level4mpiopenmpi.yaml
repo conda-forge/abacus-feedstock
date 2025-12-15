@@ -22,8 +22,10 @@ libblas:
 - 3.9.* *netlib
 liblapack:
 - 3.9.* *netlib
+microarch_level:
+- '4'
 mpi:
-- mpich
+- openmpi
 mpich:
 - '4'
 openmpi:

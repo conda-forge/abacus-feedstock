@@ -23,15 +23,15 @@ libblas:
 liblapack:
 - 3.9.* *netlib
 microarch_level:
-- '1'
+- '4'
 mpi:
-- openmpi
+- mpich
 mpich:
 - '4'
 openmpi:
 - '4'
 target_platform:
-- linux-aarch64
+- linux-64
 zip_keys:
 - - cxx_compiler_version
   - c_stdlib_version
