@@ -311,7 +311,7 @@ jobs:
             runs_on: ['ubuntu-latest']
             tools_install_dir: ~/miniforge3
           - CONFIG: linux_ppc64le_mpimpich
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le:alma10
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
             build_workspace_dir: build_artifacts
@@ -323,7 +323,7 @@ jobs:
             runs_on: ['ubuntu-latest']
             tools_install_dir: ~/miniforge3
           - CONFIG: linux_ppc64le_mpiopenmpi
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le:alma10
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
             build_workspace_dir: build_artifacts

@@ -13,7 +13,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '15'
 docker_image:
-- quay.io/condaforge/linux-anvil-ppc64le:alma10
+- quay.io/condaforge/linux-anvil-x86_64:alma10
 fftw:
 - '3'
 libblas:
@@ -25,7 +25,7 @@ microarch_level:
 mpi:
 - mpich
 mpich:
-- '4'
+- '5'
 openmpi:
 - '5'
 target_platform:
